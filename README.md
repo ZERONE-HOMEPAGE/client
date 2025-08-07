@@ -59,7 +59,6 @@ feat: 로그인 API 연동 기능 추가(#123)
 ## Workflow: git flow
 
 - **main**: 최종 배포용 브랜치입니다. release 브랜치에서 충분히 테스트된 코드만 merge됩니다.
-- **release**: main에 병합하기 전, 테스트 및 최종 점검을 위한 브랜치입니다.
 - **develop**: 주요 개발 브랜치입니다. 각 기능(feature) 브랜치에서 개발이 완료되면 이 브랜치로 merge합니다.
 - **feature/**: 개별 기능 개발을 위한 브랜치입니다. 예: `feature/login`, `feature/main` 등. 개발이 끝나면 develop으로 merge합니다.
 - **hotfix/**: 운영 중 긴급 오류가 발생했을 때 빠르게 수정하기 위한 브랜치입니다. 수정 후 main과 develop에 병합합니다.
