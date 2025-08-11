@@ -1,10 +1,16 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainPage from "@/pages/MainPage";
+import StudyPage from "@/pages/StudyPage";
+
 function App() {
   return (
-    <>
-    <p className='text-2xl'>test</p>
-    <p>hello</p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/study" element={<StudyPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;
