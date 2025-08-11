@@ -3,6 +3,7 @@ type ButtonProps = {
     variant?:'primary' |'secondary';
     disabled?:boolean;
     onClick?:()=>void;
+    className?: string;
 };
 
 const styles = {
@@ -11,9 +12,9 @@ const styles = {
     disabled: 'opacity-50 cursor-not-allowed',
 }
 
-export default function Button({ children, variant = 'primary', disabled = false, onClick }: ButtonProps) {
+export default function Button({ children, variant = 'primary', disabled = false, onClick, className }: ButtonProps) {
     return (
-        <button className={`${styles[variant]} ${disabled ? styles.disabled : ''}`} onClick={onClick} disabled={disabled}>
+        <button className={`${styles[variant]} ${disabled ? styles.disabled : ''} ${className}`} onClick={onClick} disabled={disabled}>
             {children}
         </button>
     );
