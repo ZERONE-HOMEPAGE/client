@@ -13,7 +13,7 @@ interface EventBoxProps {
 function EventBox({ title, start, end, imgUrl }: EventBoxProps) {
     return (
         <div className="bg-white pb-4 rounded shadow-md m-2 h-5xl w-full">
-            {imgUrl ? <img width="100%" src={imgUrl} alt={title} className="mt-2 rounded-t h-48 object-cover" /> : <img src={zeroneCharacter} alt="기본 이미지" className="mt-2 h-48 object-cover rounded-t w-full"/>}
+            {imgUrl ? <img width="100%" src={imgUrl} alt={title} className="mt-2 rounded h-48 object-cover" /> : <img src={zeroneCharacter} alt="기본 이미지" className="mt-2 h-48 object-cover rounded w-full"/>}
             <div className='pr-4 pl-4'>
                 <h2 className="text-lg font-bold mt-2">{title}</h2>
                 <div className="flex items-center gap-2 text-gray-600">
