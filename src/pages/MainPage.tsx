@@ -5,7 +5,7 @@ import Hero from "@/components/sections/MainPage/Hero";
 
 export default function MainPage() {
     return (
-        <div className="min-w-full h-full bg-blue-100 flex flex-col">
+        <div className="min-w-full h-full  flex flex-col">
             <div className="flex flex-col h-screen">
                 <Header />
                 <Hero />
