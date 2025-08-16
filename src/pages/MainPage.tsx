@@ -7,7 +7,7 @@ export default function MainPage() {
   return (
     <div className="min-w-full h-full  flex flex-col">
       <Header />
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen -mt-16">
         <Hero />
       </div>
       <div className="min-w-full flex flex-col items-center justify-center p-4 gap-10">
