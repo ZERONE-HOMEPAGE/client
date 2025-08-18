@@ -5,15 +5,15 @@ import Hero from "@/components/sections/MainPage/Hero";
 
 export default function MainPage() {
     return (
-        <div className="min-w-full h-full  flex flex-col">
-            <div className="flex flex-col h-screen">
+        <div className="flex flex-col min-w-full bg-white min-h-screen">
+            <div className="flex flex-col h-[60vh] lg:h-screen">
                 <Header />
                 <Hero />
             </div>
-            <div className="min-w-full flex flex-col items-center justify-center p-4 gap-10">
+            <div className="flex flex-col items-center justify-center p-4 h-full lg:h-[130vh] bg-blue-100">
                 <Event />
-                <ClubIntro />
             </div>
+            <ClubIntro />
         </div>
     );
 }
