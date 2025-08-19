@@ -10,7 +10,7 @@ interface ClubIntro_t {
 
 export default function ClubIntro({ introText, purposeText } : ClubIntro_t) {
     return (
-        <div className="relative w-full min-h-screen brightness-75 bg-repeat bg-cover" 
+        <div className="relative w-full min-h-screen brightness-75 bg-repeat bg-contain" 
             style={{backgroundImage: `url(${Background})`}}>
             <div className="inset-0 flex flex-col items-center justify-start pt-[6vh]">
                 <p className="text-4xl font-bold text-center text-white mt-[10vh] mb-10">학회소개</p>
