@@ -1,4 +1,3 @@
-import Card from '@/components/ui/Card';
 import Background from '@/assets/images/clubintro_bg.jpg';
 import bookIcon from '@/assets/icon/book.png';
 import awardIcon from '@/assets/icon/award.png';
@@ -11,9 +10,9 @@ interface ClubIntro_t {
 
 export default function ClubIntro({ introText, purposeText } : ClubIntro_t) {
     return (
-        <div className="relative w-full h-auto">
-            <img src={Background} className="w-full h-full object-cover brightness-75" />
-            <div className="absolute inset-0 flex flex-col items-center justify-start pt-[6vh]">
+        <div className="relative w-full min-h-screen brightness-75 bg-repeat bg-cover" 
+            style={{backgroundImage: `url(${Background})`}}>
+            <div className="inset-0 flex flex-col items-center justify-start pt-[6vh]">
                 <p className="text-4xl font-bold text-center text-white mt-[10vh] mb-10">학회소개</p>
                 <p className='max-w-4xl mx-auto leading-relaxed whitespace-pre-line text-xl font-semibold text-center text-violet-300'>{introText}</p>
 
@@ -23,6 +22,31 @@ export default function ClubIntro({ introText, purposeText } : ClubIntro_t) {
                     <p className='text-3xl font-bold text-white mt-10 ml-10'>설립 목적</p>
                     <p className='max-w-6xl m-9 leading-relaxed whitespace-pre-line text-xl font-semibold text-gray-200'>{purposeText}</p>
                 </div>
+                <div className="flex flex-col border border-white rounded-xl mt-10 
+                                bg-gray-600/40 backdrop-blur-[21px] 
+                                shadow-[0_4px_22px_-2px_rgba(0,0,0,1),inset_0_0_200px_15px_rgba(230,230,230,0.35)] ">
+                    <p className='text-3xl font-bold text-white mt-10 ml-10'>설립 목적</p>
+                    <p className='max-w-6xl m-9 leading-relaxed whitespace-pre-line text-xl font-semibold text-gray-200'>{purposeText}</p>
+                </div>
+                <div className="flex flex-col border border-white rounded-xl mt-10 
+                                bg-gray-600/40 backdrop-blur-[21px] 
+                                shadow-[0_4px_22px_-2px_rgba(0,0,0,1),inset_0_0_200px_15px_rgba(230,230,230,0.35)] ">
+                    <p className='text-3xl font-bold text-white mt-10 ml-10'>설립 목적</p>
+                    <p className='max-w-6xl m-9 leading-relaxed whitespace-pre-line text-xl font-semibold text-gray-200'>{purposeText}</p>
+                </div>
+                <div className="flex flex-col border border-white rounded-xl mt-10 
+                                bg-gray-600/40 backdrop-blur-[21px] 
+                                shadow-[0_4px_22px_-2px_rgba(0,0,0,1),inset_0_0_200px_15px_rgba(230,230,230,0.35)] ">
+                    <p className='text-3xl font-bold text-white mt-10 ml-10'>설립 목적</p>
+                    <p className='max-w-6xl m-9 leading-relaxed whitespace-pre-line text-xl font-semibold text-gray-200'>{purposeText}</p>
+                </div>
+                <div className="flex flex-col border border-white rounded-xl mt-10 
+                                bg-gray-600/40 backdrop-blur-[21px] 
+                                shadow-[0_4px_22px_-2px_rgba(0,0,0,1),inset_0_0_200px_15px_rgba(230,230,230,0.35)] ">
+                    <p className='text-3xl font-bold text-white mt-10 ml-10'>설립 목적</p>
+                    <p className='max-w-6xl m-9 leading-relaxed whitespace-pre-line text-xl font-semibold text-gray-200'>{purposeText}</p>
+                </div>
+
 
                 <div className="max-w-6xl flex flex-col border border-white rounded-xl mt-10 
                                 bg-gray-600/40 backdrop-blur-[21px] 
