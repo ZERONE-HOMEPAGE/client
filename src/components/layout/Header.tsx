@@ -7,19 +7,14 @@ export default function Header() {
     setBarOpen(!barOpen);
   }
   return (
-    <header className="sticky top-0 z-50 p-4  h-16 bg-transparent">
-      <div
+    <header className="sticky top-0 z-50  bg-black">
+      {/* <div
         className="absolute inset-0 bg-gradient-to-b
   from-black/95
   via-black/50
-  
   to-transparent pointer-events-none"
-      ></div>
-      <nav
-        className="flex flex-row md:justify-around justify-between relative text-white 
-      
-      "
-      >
+      ></div>  */}
+      <nav className="flex flex-row md:justify-around justify-between relative text-white items-center px-4 h-16">
         <Link to="/">zerone</Link>
 
         <div>
@@ -40,12 +35,12 @@ export default function Header() {
           </div>
         </div>
         {barOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-40 z-20" onClick={barClick}></div>
+          <div className="fixed inset-0 bg-black bg-opacity-40 z-20 " onClick={barClick}></div>
         )}
         <div
           className={`fixed top-0 right-0 h-full w-3/5 bg-white z-30 transform ${
             barOpen ? 'translate-x-0' : 'translate-x-full'
-          } transition-transform duration-300 ease-in-out text-black`}
+          } transition-transform duration-300 ease-in-out text-black `}
         >
           <button className="p-4 text-xl" onClick={barClick}>
             ✕
