@@ -6,6 +6,13 @@ export default function Header() {
   function barClick() {
     setBarOpen(!barOpen);
   }
+  const menuItems = [
+    { name: '스터디', path: '/study' },
+    { name: '활동', path: null },
+    { name: '게시판', path: null },
+    { name: '컴파일러', path: null },
+    { name: 'Q&A', path: null },
+  ];
   return (
     <header className="sticky top-0 z-50  bg-black">
       {/* <div
@@ -19,14 +26,17 @@ export default function Header() {
 
         <div>
           <ul className="md:flex hidden flex-row space-x-5">
-            <li>
-              <NavLink to="/study" className={({ isActive }) => (isActive ? 'font-bold' : '')}>
-                스터디
-              </NavLink>
-            </li>
-            <li>활동</li>
-            <li>게시판</li>
-            <li>Q&A</li>
+            {menuItems.map(({ name, path }) => (
+              <li key={name}>
+                {path ? (
+                  <NavLink to={path} className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+                    {name}
+                  </NavLink>
+                ) : (
+                  <span>{name}</span>
+                )}
+              </li>
+            ))}
           </ul>
           <div>
             <button className="md:hidden text-xl" onClick={barClick}>
@@ -46,18 +56,17 @@ export default function Header() {
             ✕
           </button>
           <ul className="flex flex-col space-y-4 p-4 ">
-            <li>
-              <NavLink
-                to="/study"
-                onClick={barClick}
-                className={({ isActive }) => (isActive ? 'font-bold' : '')}
-              >
-                스터디
-              </NavLink>
-            </li>
-            <li>활동</li>
-            <li>게시판</li>
-            <li>Q&A</li>
+            {menuItems.map(({ name, path }) => (
+              <li key={name} onClick={barClick}>
+                {path ? (
+                  <NavLink to={path} className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+                    {name}
+                  </NavLink>
+                ) : (
+                  <div>{name}</div>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
