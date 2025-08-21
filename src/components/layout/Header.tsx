@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [barOpen, setBarOpen] = useState(false);
@@ -13,6 +13,18 @@ export default function Header() {
     { name: '컴파일러', path: null },
     { name: 'Q&A', path: null },
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && barOpen) {
+        setBarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [barOpen]);
+
   return (
     <header className="sticky top-0 z-50  bg-black">
       {/* <div
