@@ -1,4 +1,3 @@
-import Header from '@/components/layout/Header';
 import ClubIntro from '@/components/sections/MainPage/ClubIntro';
 import Event from '@/components/sections/MainPage/Event';
 import Hero from '@/components/sections/MainPage/Hero';
@@ -6,7 +5,6 @@ import Hero from '@/components/sections/MainPage/Hero';
 export default function MainPage() {
   return (
     <div className="min-w-full h-full  flex flex-col">
-      <Header />
       <div className="flex flex-col h-screen">
         <Hero />
       </div>
