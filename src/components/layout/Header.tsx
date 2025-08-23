@@ -1,8 +1,12 @@
-import { Link, NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Header() {
   const [barOpen, setBarOpen] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+  const observerRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
   function barClick() {
     setBarOpen(!barOpen);
   }
@@ -25,14 +29,43 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, [barOpen]);
 
+  useEffect(() => {
+    const heroDetector = document.createElement('div');
+    heroDetector.className = 'absolute top-[100vh] h-px w-full pointer-events-none invisible';
+
+    document.body.appendChild(heroDetector);
+    observerRef.current = heroDetector;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+        rootMargin: '0px',
+      },
+    );
+    observer.observe(heroDetector);
+    return () => {
+      observer.disconnect();
+      if (heroDetector && heroDetector.parentNode) {
+        heroDetector.parentNode.removeChild(heroDetector);
+      }
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50  bg-black">
-      {/* <div
-        className="absolute inset-0 bg-gradient-to-b
-  from-black/95
-  via-black/50
-  to-transparent pointer-events-none"
-      ></div>  */}
+    <header className="sticky top-0 z-50  bg-transparent">
+      <div
+        className={`absolute inset-0 bg-gradient-to-b from-black/95 via-black/50 to-transparent pointer-events-none transition-opacity duration-500 ease-out backdrop-blur ${
+          isHeroVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+      ></div>
+      <div
+        className={`absolute inset-0 bg-black pointer-events-none transition-opacity duration-500 ease-out ${
+          location.pathname === '/' && isHeroVisible ? 'opacity-0' : 'opacity-100'
+        }`}
+      ></div>
       <nav className="flex flex-row md:justify-around justify-between relative text-white items-center px-4 h-16">
         <Link to="/">zerone</Link>
 
