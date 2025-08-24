@@ -66,9 +66,6 @@ export default function Event() {
         }
     ];
     
-    const prevRef = useRef<HTMLButtonElement | null>(null);
-    const nextRef = useRef<HTMLButtonElement | null>(null);
-
     return (
         <div className='w-full flex flex-col items-center justify-center p-4 gap-5 h-full pb-20'>
             <p className="text-3xl lg:text-4xl font-bold text-center mb-6 mt-10">이달의 주요 이벤트</p>

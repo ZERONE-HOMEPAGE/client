@@ -8,7 +8,6 @@ interface ClubIntro_t {
     purposeText : string;
 }
 
-
 export default function ClubIntro({ introText, purposeText } : ClubIntro_t) {
     return (
         <Background image={background}>

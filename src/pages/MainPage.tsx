@@ -20,9 +20,9 @@ export default function MainPage() {
       <div className="flex flex-col h-screen">
         <Hero />
       </div>
-      <div className="min-w-full flex flex-col items-center justify-center gap-10">
+      <div className="min-w-full flex flex-col items-center justify-center">
         <Event />
-        <ClubIntro />
+        <ClubIntro introText={Text.introText} purposeText={Text.purposeText} />
         <Awards />
         <CompetitionHistory />
       </div>
