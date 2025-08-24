@@ -10,7 +10,7 @@ export default function MainPage() {
                 <Header />
                 <Hero />
             </div>
-            <div className="flex flex-col items-center justify-center p-4 h-full lg:h-[130vh] bg-blue-100">
+            <div className="flex flex-col items-center justify-center p-4 h-full h-fit">
                 <Event />
             </div>
             <ClubIntro />
