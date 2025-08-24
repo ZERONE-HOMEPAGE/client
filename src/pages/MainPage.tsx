@@ -1,5 +1,6 @@
-import Header from '@/components/layout/Header';
+import Awards from '@/components/sections/MainPage/Awards';
 import ClubIntro from '@/components/sections/MainPage/ClubIntro';
+import CompetitionHistory from '@/components/sections/MainPage/CompetitionHistory';
 import Event from '@/components/sections/MainPage/Event';
 import Hero from '@/components/sections/MainPage/Hero';
 
@@ -15,16 +16,15 @@ const Text = {
 
 export default function MainPage() {
   return (
-    <div className="min-w-full h-full flex flex-col">
-      <Header />
+    <div className="min-w-full h-full  flex flex-col">
       <div className="flex flex-col h-screen">
         <Hero />
       </div>
-      <div className="min-w-full flex flex-col items-center justify-center p-4">
+      <div className="min-w-full flex flex-col items-center justify-center gap-10">
         <Event />
-      </div>
-      <div>
-        <ClubIntro introText={Text.introText} purposeText={Text.purposeText} />
+        <ClubIntro />
+        <Awards />
+        <CompetitionHistory />
       </div>
     </div>
   );
