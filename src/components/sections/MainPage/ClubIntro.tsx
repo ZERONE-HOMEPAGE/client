@@ -8,6 +8,7 @@ interface ClubIntro_t {
     purposeText : string;
 }
 
+
 export default function ClubIntro({ introText, purposeText } : ClubIntro_t) {
     return (
         <Background image={background}>
@@ -69,9 +70,7 @@ function Background({ children, image }: { children: React.ReactNode; image?: st
 
 function ShadowBox({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className={`w-full max-w-6xl flex flex-col border border-white rounded-xl mt-6 md:mt-8 lg:mt-10 mx-auto
-                                bg-gray-600/40 backdrop-blur-[21px] 
-                                shadow-[0_4px_22px_-2px_rgba(0,0,0,1),inset_0_0_200px_15px_rgba(230,230,230,0.35)] ${className}`}>
+        <div className={`flex flex-col border border-white rounded-xl mt-10 bg-gray-600/40 backdrop-blur-[21px] shadow-[0_4px_22px_-2px_rgba(0,0,0,1),inset_0_0_200px_15px_rgba(230,230,230,0.35)] ${className}`}>
             {children}
         </div>
     );
