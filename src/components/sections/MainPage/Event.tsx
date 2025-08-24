@@ -1,9 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import zeroneCharacter from '@/assets/images/zerone_character.jpg';
-import clockIcon from '@/assets/images/clock.png';
-import { useRef } from "react";
-import SliderButton from '@/components/ui/SliderButton';
+import clockIcon from '@/assets/icon/clock.png';
 
 interface EventBoxProps {
     title: string;
