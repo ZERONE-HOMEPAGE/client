@@ -58,83 +58,104 @@ export default function Hero() {
 
   function makeBaseTile(size = 120): HTMLCanvasElement {
     const off = document.createElement("canvas");
-    off.width = size; off.height = size;
+    off.width = size;
+    off.height = size;
     const c = off.getContext("2d")!;
-    const PAD = Math.round(size * 0.10);
-    const R = Math.round(size * 0.18);
+
+    const PAD = Math.round(size * 0.05);
+    const R = Math.round(size * 0.15);
     const inner = roundedRectPath(PAD, PAD, size - PAD * 2, size - PAD * 2, R);
 
-    c.fillStyle = "#0b0b0b";
-    c.fillRect(0, 0, size, size);
+    // 배경
+    c.fillStyle = "#111";
+    c.fill(inner);
 
+    // 헬퍼: inset shadow 근사
+    function drawInsetGradient(color: string, offsetX: number, offsetY: number, blur: number, spread: number) {
+      c.save();
+      c.clip(inner);
+
+      // inset은 안쪽에서 바깥쪽으로 어두워져야 하므로, gradient 방향 조절
+      const g = c.createLinearGradient(
+        PAD + offsetX, PAD + offsetY,
+        size - PAD, size - PAD
+      );
+      g.addColorStop(0, color);
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      c.fillStyle = g;
+
+      c.fillRect(PAD, PAD, size - PAD * 2, size - PAD * 2);
+      c.restore();
+    }
+
+    // 1) inset 3px 3px 4px -1px rgba(93,93,93,0.45)
+    drawInsetGradient("rgba(93,93,93,0.45)", 3, 3, 4, -1);
+
+    // 2) inset -4px -2px 4px 0px rgba(83,83,83,0.65)
+    drawInsetGradient("rgba(83,83,83,0.65)", -4, -2, 4, 0);
+
+    // 3) inset -2px 0px 2px -1px rgba(0,0,0,0.53)
+    drawInsetGradient("rgba(0,0,0,0.53)", -2, 0, 2, -1);
+
+    // 4) drop shadow 0px 0px 4px 0px rgba(0,0,0,1)
     c.save();
-    c.clip(inner);
-
-    const face = c.createRadialGradient(size/2, size/2, size*0.18, size/2, size/2, size*0.95);
-    face.addColorStop(0.0, "#141414");
-    face.addColorStop(1.0, "#050505");
-    c.fillStyle = face;
-    c.fillRect(PAD, PAD, size - PAD*2, size - PAD*2);
-
-    const rim = c.createRadialGradient(size/2, size/2, size*0.35, size/2, size/2, size*0.58);
-    rim.addColorStop(0.0, "rgba(0,0,0,0.00)");
-    rim.addColorStop(1.0, "rgba(0,0,0,0.22)");
-    c.globalCompositeOperation = "multiply";
-    c.fillStyle = rim;
-    c.fillRect(PAD, PAD, size - PAD*2, size - PAD*2);
-
+    c.shadowColor = "rgba(0,0,0,1)";
+    c.shadowBlur = 4;
+    c.shadowOffsetX = 0;
+    c.shadowOffsetY = 0;
+    c.fillStyle = "#0000";
+    c.fill(inner);
     c.restore();
 
-    c.save();
-    c.shadowColor = "rgba(0,0,0,0.6)";
-    c.shadowBlur = 2.5;
-    c.shadowOffsetX = 0.5;
-    c.shadowOffsetY = 0.5;
-    c.strokeStyle = "rgba(0,0,0,0)";
-    c.lineWidth = 1;
-    c.stroke(inner);
-    c.restore();
-
-    c.strokeStyle = "rgba(0,0,0,0.55)";
-    c.lineWidth = 1;
-    c.stroke(inner);
     return off;
   }
 
+
   // glow 그리기 (0~1)
-  function drawGlow(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, p: number) {
-    if (p <= 0) return;
-    const PAD = Math.round(Math.min(w, h) * 0.10);
-    const R = Math.round(Math.min(w, h) * 0.18);
-    const inner = roundedRectPath(x + PAD, y + PAD, w - PAD * 2, h - PAD * 2, R);
+  // 단조로운 흰색 + 극미한 중앙 하이라이트
+// 헤일로(바깥 원형 빛) 없음 + 셀 내부에서만 부드럽게 페이드아웃
+function drawGlow(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  p: number
+) {
+  if (p <= 0) return;
 
-    const intensity = 0.24 * p;
-    const rimAlpha = 0.08 * p;
-    const centerBoost = 0.80 * p;
+  const S = Math.min(w, h);
+  const cx = x + w / 2;
+  const cy = y + h / 2;
 
-    ctx.save();
-    ctx.clip(inner);
-    ctx.globalCompositeOperation = "screen";
-    ctx.fillStyle = `rgba(255,255,255,${intensity})`;
-    ctx.fillRect(x + PAD, y + PAD, w - PAD * 2, h - PAD * 2);
+  // 라운드 사각형 내부에만 그리기 → 바깥 원형 헤일로 완전 차단
+  const PAD = Math.round(S * 0.05);
+  const R   = Math.round(S * 0.15);
+  const inner = roundedRectPath(x + PAD, y + PAD, w - PAD * 2, h - PAD * 2, R);
 
-    const huge = ctx.createRadialGradient(
-      x + w/2, y + h/2, Math.min(w,h) * 0.05,
-      x + w/2, y + h/2, Math.min(w,h) * 1.2
-    );
-    huge.addColorStop(0.0, `rgba(255,255,255,${rimAlpha})`);
-    huge.addColorStop(1.0, "rgba(255,255,255,0)");
-    ctx.fillStyle = huge; ctx.fillRect(x, y, w, h);
+  ctx.save();
+  ctx.clip(inner);
 
-    const mid = ctx.createRadialGradient(
-      x + w/2, y + h/2, 0,
-      x + w/2, y + h/2, Math.min(w,h) * 0.55
-    );
-    mid.addColorStop(0.0, `rgba(255,255,255,${centerBoost})`);
-    mid.addColorStop(0.8, "rgba(255,255,255,0)");
-    ctx.fillStyle = mid; ctx.fillRect(x, y, w, h);
-    ctx.restore();
-  }
+  // 셀 안에서만 흰 → 투명으로 부드럽게 페이드
+  // 위쪽은 하얗게, 오른쪽 아래만 그림자지게
+  const offsetX = S * 0.15; // 오른쪽으로 오프셋
+  const offsetY = S * 0.15; // 아래쪽으로 오프셋
+  const g = ctx.createRadialGradient(cx - offsetX, cy - offsetY, 0, cx, cy, S * 0.8);
+  g.addColorStop(0.0, `rgba(255,255,255,${0.95 * p})`); // 위쪽 왼쪽이 가장 밝음
+  g.addColorStop(0.6, `rgba(255,255,255,${0.5 * p})`);  // 중간
+  g.addColorStop(1.0, "rgba(255,255,255,0)");           // 오른쪽 아래가 어두움
+
+  // 가산합성은 유지해도 되고(더 밝게), 너무 세면 주석 처리해서 기본 합성 사용
+  ctx.globalCompositeOperation = "lighter";
+  ctx.fillStyle = g;
+
+  // ❗ 바깥으로 나가지 않도록 셀 영역만 채운다 (헤일로 제거 핵심)
+  ctx.fillRect(x, y, w, h);
+
+  ctx.restore();
+}
+
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -169,8 +190,6 @@ export default function Hero() {
         const x = c * cellWidth, y = r * cellHeight;
         if (baseTileRef.current) ctx.drawImage(baseTileRef.current, x, y, cellWidth, cellHeight);
         drawGlow(ctx, x, y, cellWidth, cellHeight, glowRef.current![r*cols+c]);
-        ctx.strokeStyle = "#0E0E0E"; ctx.lineWidth = 1;
-        ctx.strokeRect(x + 0.5, y + 0.5, cellWidth - 1, cellHeight - 1);
       }
     };
     drawAll();
@@ -195,8 +214,6 @@ export default function Hero() {
         ctx.clearRect(x, y, cellWidth, cellHeight);
         if (baseTileRef.current) ctx.drawImage(baseTileRef.current, x, y, cellWidth, cellHeight);
         drawGlow(ctx, x, y, cellWidth, cellHeight, next);
-        ctx.strokeStyle = "#0E0E0E"; ctx.lineWidth = 1;
-        ctx.strokeRect(x + 0.5, y + 0.5, cellWidth - 1, cellHeight - 1);
       }
       if (anyDirty) rafRef.current = requestAnimationFrame(step);
       else { animatingRef.current = false; rafRef.current = null; }
@@ -298,8 +315,6 @@ export default function Hero() {
         const x = c * cw, y = r * ch;
         if (baseTileRef.current) ctx2.drawImage(baseTileRef.current, x, y, cw, ch);
         drawGlow(ctx2, x, y, cw, ch, glowRef.current![r*cols+c]);
-        ctx2.strokeStyle = "#0E0E0E"; ctx2.lineWidth = 1;
-        ctx2.strokeRect(x + 0.5, y + 0.5, cw - 1, ch - 1);
       }
     };
 
@@ -320,10 +335,10 @@ export default function Hero() {
   return (
     <div className="relative flex flex-row items-center justify-start p-4 bg-black h-full overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className="relative flex flex-col ml-[20%] items-start gap-4 z-10">
-        <p className="text-2xl text-gray-600 font-medium">한양대학교 ERICA 소프트웨어융합대학</p>
+      <div className="relative flex flex-col ml-[calc(100vw/60*7)] items-start gap-4 z-10">
+        <p className="text-2xl text-gray-400 font-medium">한양대학교 ERICA 소프트웨어융합대학</p>
         <h1 className="text-4xl text-white font-bold">알고리즘학회 영과일</h1>
-        <Button variant="primary">가입하기</Button>
+        <Button variant="primary" onClick={() => window.open('https://forms.gle/tM5VeU42QsDkQ7cz7', '_blank')}>가입하기 →</Button>
       </div>
     </div>
   );

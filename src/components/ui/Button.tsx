@@ -7,8 +7,8 @@ type ButtonProps = {
 };
 
 const styles = {
-    primary: 'bg-blue-500 text-white font-bold py-2 px-4 rounded',
-    secondary: 'bg-gray-500 text-white font-bold py-2 px-4 rounded',
+    primary: 'bg-[#8ab3e2] py-2 px-4 rounded-full',
+    secondary: 'bg-gray-500 text-white py-2 px-4 rounded',
     disabled: 'opacity-50 cursor-not-allowed',
 }
 
