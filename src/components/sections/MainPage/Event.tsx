@@ -13,7 +13,7 @@ interface EventBoxProps {
 
 function EventBox({ title, start, end, imgUrl, className}: EventBoxProps) {
     return (
-        <div className={`bg-white pb-4 rounded h-full ${className}`}>
+        <div className={`bg-white pb-4 rounded h-full shadow-md ${className}`}>
             {imgUrl ? <img width="100%" src={imgUrl} alt={title} className="h-56 object-cover rounded w-full" /> : <img src={zeroneCharacter} alt="기본 이미지" className="h-56 object-cover rounded w-full"/>}
             <div className='pr-4 pl-4'>
                 <h2 className="text-lg font-bold mt-2">{title}</h2>
@@ -79,24 +79,13 @@ export default function Event() {
                             navigation 
                             autoplay={{ delay: 9000, disableOnInteraction: false }}
                             className='w-full'>
-                        {events.slice(0, 3).map((event, index) => (
+                        {events.map((event, index) => (
                         <SwiperSlide key={index}>
                             <EventBox title={event.title} start={event.start} end={event.end} imgUrl={event.imgUrl}/>
                         </SwiperSlide>
                         ))}
                     </Swiper>
-                    <Swiper modules={[Navigation, Pagination, Autoplay]} 
-                            spaceBetween={12} 
-                            slidesPerView={1}
-                            navigation 
-                            autoplay={{ delay: 9000, disableOnInteraction: false }}
-                            className='w-full'>
-                        {events.slice(3, 6).map((event, index) => (
-                        <SwiperSlide key={index}>
-                            <EventBox title={event.title} start={event.start} end={event.end} imgUrl={event.imgUrl}/>
-                        </SwiperSlide>
-                        ))}
-                    </Swiper>
+                    
                 </div>
             </div>
 
