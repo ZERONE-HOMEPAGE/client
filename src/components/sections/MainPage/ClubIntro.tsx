@@ -3,27 +3,27 @@ import bookIcon from '@/assets/icon/book.png';
 import awardIcon from '@/assets/icon/award.png';
 import giftIcon from '@/assets/icon/gift.png';
 
-interface ClubIntro_t {
-    introText : string;
-    purposeText : string;
-}
+export default function ClubIntro() {
+    const Text = {
+        introText: "안녕하세요! 영과일에 오신 것을 환영합니다. 저희 학회는 알고리즘과 프로그래밍에 관심 있는 학생들이 함께 모여 실력을 쌓고 다양한 경험을 나누는 공간입니다. 어려운 문제를 해결하며 얻은 성취감과 동료들과의 협력 속에서 우리는 함께 성장하고 있습니다. 앞으로도 지속적으로 발전하는 학회가 되도록 노력하겠습니다.",
+        purposeText: "영과일은 알고리즘 문제 해결을 통해 학문적 깊이를 더하고 실제 대회에서의 성과를 통해 현장 경험을 축적하는 것을 목표로 설립되었습니다. 학회원들은 기초부터 고급 수준까지의 다양한 알고리즘 문제를 풀며 실력을 향상시키고 국내외 대회에서 우수한 성적을 거두는 것을 목표로 하고 있습니다. 학회 활동을 통해 프로그래밍 실력뿐만 아니라 팀워크와 협력의 중요성도 배울 수 있습니다."
+    };
 
-export default function ClubIntro({ introText, purposeText } : ClubIntro_t) {
     return (
         <Background image={background}>
             <div className="px-4 md:px-8 lg:px-16 w-full">
                 <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mt-[10vh] mb-6 md:mb-10">학회소개</p>
-                <p className='max-w-4xl mx-auto leading-relaxed whitespace-pre-line text-lg md:text-xl font-semibold text-center text-violet-300 mb-8 md:mb-12'>{introText}</p>
+                <p className='max-w-4xl mx-auto leading-relaxed text-lg md:text-xl font-semibold text-center text-violet-300 mb-8 md:mb-12'>{Text.introText}</p>
 
                 <ShadowBox>
                     <div className='p-6 md:p-8 lg:p-10'>
                         <p className='text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6'>설립 목적</p>
-                        <p className='leading-relaxed whitespace-pre-line text-lg md:text-xl font-semibold text-gray-200'>{purposeText}</p>
+                        <p className='leading-relaxed text-lg md:text-xl font-semibold text-gray-200'>{Text.purposeText}</p>
                     </div>
                 </ShadowBox>
 
                 <ShadowBox>
-                    <div className='p-6 md:p-8 lg:p-10'>
+                    <div className='p-6 md:p-8 lg:p-9'>
                         <p className='text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8'>주요 활동</p>
 
                         <div className='flex flex-col lg:flex-row justify-center items-stretch gap-4 md:gap-6'>
