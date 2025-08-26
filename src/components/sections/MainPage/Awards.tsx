@@ -52,8 +52,8 @@ export default function Awards() {
     return (
         <div className="w-full min-h-[100vh] flex flex-col items-center justify-evenly bg-[#EDEEFF] gap-6 md:gap-10 py-8">
             <div className="flex flex-col items-center justify-center">
-                <p className="font-bold text-lg mt-8 md:mt-16">각종 경진대회</p>
-                <h1 className="text-2xl font-bold mt-3 md:mt-5">수상 이력</h1>
+                <p className="font-bold text-lg mt-10 md:mt-16">각종 경진대회</p>
+                <h1 className="text-2xl font-bold mt-3 md:mt-5 -mb-32 md:mb-0">수상 이력</h1>
             </div>
 
             <div className="flex flex-col w-[80%] flex-1 max-w-4xl items-center justify-center gap-4">
@@ -87,7 +87,7 @@ export default function Awards() {
                 ))}
                 </div>
             </div>
-            <p className="max-w-[51rem] mx-auto leading-relaxed text-sm md:text-lg font-bold text-center mb-4 md:mb-12 px-4">
+            <p className="max-w-[25rem] md:max-w-[51rem] leading-relaxed text-sm md:text-lg font-bold text-center mb-4 md:mb-12 -mt-32 md:mt-0 px-4">
             위와 같은 수상 경험을 통해 알고리즘 문제 해결 능력을 입증하였으며 다양한 문제 유형을 분석하고 해결하는 과정에서 논리적 사고력과 실전 감각을 지속적으로 향상시켜 왔습니다.
             </p>
             
