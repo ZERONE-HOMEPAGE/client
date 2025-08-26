@@ -98,18 +98,25 @@ export default function Header() {
               barOpen ? 'translate-x-0' : 'translate-x-full'
             } transition-transform duration-300 ease-in-out text-black `}
           >
-            <button className="p-4 text-xl" onClick={barClick}>
-              ✕
-            </button>
+            <div className="h-16 flex items-center px-7">
+              <button className="text-xl" onClick={barClick}>
+                ✕
+              </button>
+            </div>
             <ul className="flex flex-col space-y-4 p-4 ">
               {menuItems.map(({ name, path }) => (
-                <li key={name} onClick={barClick}>
+                <li key={name} onClick={barClick} className="w-full">
                   {path ? (
-                    <NavLink to={path} className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+                    <NavLink
+                      to={path}
+                      className={({ isActive }) =>
+                        'block w-full p-3 rounded ' + (isActive ? 'font-bold' : '')
+                      }
+                    >
                       {name}
                     </NavLink>
                   ) : (
-                    <div>{name}</div>
+                    <div className="block w-full p-3">{name}</div>
                   )}
                 </li>
               ))}
