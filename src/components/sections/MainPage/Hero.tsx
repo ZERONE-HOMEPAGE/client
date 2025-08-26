@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Button from "@/components/ui/Button";
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [hoveredCell, setHoveredCell] = useState<{ col: number; row: number } | null>(null);
 
   // 초기 활성 셀들
   const initialCells = new Set([
@@ -24,8 +23,7 @@ export default function Hero() {
     "51-16","51-26"
   ]);
 
-  // 클릭 상태 (state + ref 동기화)
-  const [clickedCells, setClickedCells] = useState<Set<string>>(initialCells);
+  // 클릭 상태
   const clickedRef = useRef<Set<string>>(new Set(initialCells));
 
   // ▶︎ hover 억제: 어떤 셀이 “클릭으로 꺼졌고 아직 커서를 빼지 않음”이면 이 Set에 저장
@@ -71,7 +69,7 @@ export default function Hero() {
     c.fill(inner);
 
     // 헬퍼: inset shadow 근사
-    function drawInsetGradient(color: string, offsetX: number, offsetY: number, blur: number, spread: number) {
+    function drawInsetGradient(color: string, offsetX: number, offsetY: number) {
       c.save();
       c.clip(inner);
 
@@ -89,13 +87,13 @@ export default function Hero() {
     }
 
     // 1) inset 3px 3px 4px -1px rgba(93,93,93,0.45)
-    drawInsetGradient("rgba(93,93,93,0.45)", 3, 3, 4, -1);
+    drawInsetGradient("rgba(93,93,93,0.45)", 3, 3);
 
     // 2) inset -4px -2px 4px 0px rgba(83,83,83,0.65)
-    drawInsetGradient("rgba(83,83,83,0.65)", -4, -2, 4, 0);
+    drawInsetGradient("rgba(83,83,83,0.65)", -4, -2);
 
     // 3) inset -2px 0px 2px -1px rgba(0,0,0,0.53)
-    drawInsetGradient("rgba(0,0,0,0.53)", -2, 0, 2, -1);
+    drawInsetGradient("rgba(0,0,0,0.53)", -2, 0);
 
     // 4) drop shadow 0px 0px 4px 0px rgba(0,0,0,1)
     c.save();
@@ -162,6 +160,8 @@ function drawGlow(
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -260,7 +260,6 @@ function drawGlow(
       }
 
       lastHovered = curr;
-      setHoveredCell(curr);
       ensureAnimating();
     };
 
@@ -271,7 +270,6 @@ function drawGlow(
         suppressHoverRef.current.delete(idx);
         targetRef.current![idx] = clickedRef.current.has(key) ? 1 : 0;
         lastHovered = null;
-        setHoveredCell(null);
         ensureAnimating();
       }
     };
@@ -285,23 +283,19 @@ function drawGlow(
       const key = `${col}-${row}`;
       const idx = row * cols + col;
 
-      setClickedCells(prev => {
-        const next = new Set(prev);
-        // 토글
-        if (next.has(key)) next.delete(key); else next.add(key);
-        clickedRef.current = next;
+      // 토글
+      if (clickedRef.current.has(key)) clickedRef.current.delete(key); 
+      else clickedRef.current.add(key);
 
-        // 클릭이 hover보다 우선: 지금 결과가 꺼짐이면 hover 중이어도 0으로
-        const isOn = next.has(key);
-        targetRef.current![idx] = isOn ? 1 : 0;
+      // 클릭이 hover보다 우선: 지금 결과가 꺼짐이면 hover 중이어도 0으로
+      const isOn = clickedRef.current.has(key);
+      targetRef.current![idx] = isOn ? 1 : 0;
 
-        // 방금 클릭으로 꺼졌으면, 커서를 뺄 때까지 hover가 다시 못 켜게 억제
-        if (!isOn) suppressHoverRef.current.add(idx);
-        else suppressHoverRef.current.delete(idx);
+      // 방금 클릭으로 꺼졌으면, 커서를 뺄 때까지 hover가 다시 못 켜게 억제
+      if (!isOn) suppressHoverRef.current.add(idx);
+      else suppressHoverRef.current.delete(idx);
 
-        ensureAnimating();
-        return next;
-      });
+      ensureAnimating();
     };
 
     const handleResize = () => {
