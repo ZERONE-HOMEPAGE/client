@@ -328,7 +328,7 @@ function drawGlow(
 
   return (
     <div className="relative flex flex-row items-center justify-start p-4 bg-black h-full overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 cursor-cell" />
       <div className="relative flex flex-col ml-[calc(100vw/60*7)] items-start gap-4 z-10">
         <p className="text-2xl text-gray-400 font-medium">한양대학교 ERICA 소프트웨어융합대학</p>
         <h1 className="text-4xl text-white font-bold">알고리즘학회 영과일</h1>
