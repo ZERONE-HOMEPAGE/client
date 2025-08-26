@@ -67,7 +67,9 @@ export default function Header() {
         }`}
       ></div>
       <nav className="flex flex-row md:justify-around justify-between relative text-white items-center px-4 h-16">
-        <Link to="/">zerone</Link>
+        <div className="font-semibold">
+          <Link to="/">zerone</Link>
+        </div>
 
         <div>
           <ul className="md:flex hidden flex-row space-x-5">
