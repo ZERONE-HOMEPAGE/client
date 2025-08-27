@@ -52,8 +52,8 @@ export default function Awards() {
     return (
         <div className="w-full min-h-[100vh] flex flex-col items-center justify-evenly bg-[#EDEEFF] gap-6 md:gap-10 py-8">
             <div className="flex flex-col items-center justify-center">
-                <p className="font-bold text-lg mt-10 md:mt-16">각종 경진대회</p>
-                <h1 className="text-2xl font-bold mt-3 md:mt-5 -mb-32 md:mb-0">수상 이력</h1>
+                <p className="font-bold text-2xl mt-10 md:mt-16">각종 경진대회</p>
+                <h1 className="text-3xl font-bold mt-3 md:mt-5 -mb-32 md:mb-0">수상 이력</h1>
             </div>
 
             <div data-aos="fade-up" className="flex flex-col w-[80%] flex-1 max-w-4xl items-center justify-center gap-4">

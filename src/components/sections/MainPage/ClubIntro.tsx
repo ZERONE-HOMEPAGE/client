@@ -1,4 +1,4 @@
-import background from '@/assets/images/clubintro_bg.jpg';
+import background from '@/assets/images/intro.png';
 import bookIcon from '@/assets/icon/book.png';
 import awardIcon from '@/assets/icon/award.png';
 import giftIcon from '@/assets/icon/gift.png';
@@ -15,14 +15,14 @@ export default function ClubIntro() {
                 <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mt-[10vh] mb-6 md:mb-10">학회소개</p>
                 <p className='max-w-[57rem] mx-auto leading-relaxed text-lg md:text-xl font-semibold text-center text-violet-300 mb-8 md:mb-12'>{Text.introText}</p>
 
-                <ShadowBox>
+                <ShadowBox className='max-w-6xl mx-auto'>
                     <div className='p-6 md:p-8 lg:p-10'>
                         <p className='text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6'>설립 목적</p>
                         <p className='leading-relaxed text-lg md:text-xl font-semibold text-gray-200'>{Text.purposeText}</p>
                     </div>
                 </ShadowBox>
 
-                <ShadowBox>
+                <ShadowBox className='max-w-6xl mx-auto'>
                     <div className='p-6 md:p-8 lg:p-9'>
                         <p className='text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8'>주요 활동</p>
 
@@ -60,7 +60,7 @@ function Background({ children, image }: { children: React.ReactNode; image?: st
     return (
         <div className="relative w-full min-h-[60vh] bg-cover bg-center brightness-75"
             style={{ backgroundImage: `url(${image})` }}>
-            <div className="inset-0 flex flex-col items-center justify-start pt-6 pb-32">
+            <div className="inset-0 flex flex-col justify-center items-center pt-6 pb-32">
                 {children}
             </div>
         </div>

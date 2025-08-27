@@ -90,7 +90,7 @@ export default function Event() {
             </div>
 
             <div className="hidden md:block w-full"> {/* 컴퓨터 화면 */}
-                <div className="grid grid-cols-3 gap-4 max-w-6xl mx-auto">
+                <div className="grid grid-cols-3 gap-4 max-w-5xl mx-auto">
                     {events.map((event, index) =>
                     <EventBox key={index} title={event.title} start={event.start} end={event.end} imgUrl={event.imgUrl} className='h-full w-full'/>
                     )}
