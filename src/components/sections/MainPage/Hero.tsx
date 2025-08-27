@@ -60,7 +60,7 @@ export default function Hero() {
     off.height = size;
     const c = off.getContext("2d")!;
 
-    const PAD = Math.round(size * 0.12); // 패딩 늘려서 여백 증가
+    const PAD = Math.round(size * 0.03);
     const R = Math.round(size * 0.15);
     const inner = roundedRectPath(PAD, PAD, size - PAD * 2, size - PAD * 2, R);
 
@@ -127,7 +127,7 @@ function drawGlow(
   const cy = y + h / 2;
 
   // 라운드 사각형 내부에만 그리기 → 바깥 원형 헤일로 완전 차단
-  const PAD = Math.round(S * 0.024); // 기본 셀과 동일한 크기
+  const PAD = Math.round(S * 0.03); // 기본 셀과 동일한 크기
   const R   = Math.round(S * 0.15);
   const inner = roundedRectPath(x + PAD, y + PAD, w - PAD * 2, h - PAD * 2, R);
 
