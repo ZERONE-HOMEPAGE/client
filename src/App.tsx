@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import * as AOS from "aos";
+import "aos/dist/aos.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -8,6 +11,13 @@ import StudyPage from '@/pages/StudyPage';
 import NotFound from './pages/NotFoundPage';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 30,
+    });
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
