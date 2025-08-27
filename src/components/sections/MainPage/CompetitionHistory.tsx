@@ -7,7 +7,7 @@ export default function CompetitionHistory() {
             <p className="font-bold text-lg">자체 경진대회</p>
             <h1 className="text-2xl font-bold mb-4">개최 이력</h1>
 
-            <Card className="relative w-[95%] md:w-[60%] h-48 text-white mb-4 flex flex-row items-end justify-evenly p-0 overflow-hidden">
+            <Card animation="fade-right" className="relative w-[95%] md:w-[60%] h-48 text-white mb-4 flex flex-row items-end justify-evenly p-0 overflow-hidden">
                 <img 
                     src={competetionImg} 
                     alt="배경" 
@@ -27,9 +27,9 @@ export default function CompetitionHistory() {
                 </ul>
             </Card>
 
-            <Card className="relative w-[95%] md:w-[60%] h-48 text-white mb-8 flex flex-row items-end justify-evenly p-0 overflow-hidden">
+            <Card animation="fade-left" className="relative w-[95%] md:w-[60%] h-48 text-white mb-8 flex flex-row items-end justify-evenly p-0 overflow-hidden">
                 <img 
-                    src={competetionImg} 
+                    src={competetionImg}
                     alt="배경" 
                     className="absolute inset-0 w-full h-full object-cover opacity-60" 
                 />
