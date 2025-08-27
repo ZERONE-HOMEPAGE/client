@@ -56,7 +56,7 @@ export default function Awards() {
                 <h1 className="text-2xl font-bold mt-3 md:mt-5 -mb-32 md:mb-0">수상 이력</h1>
             </div>
 
-            <div className="flex flex-col w-[80%] flex-1 max-w-4xl items-center justify-center gap-4">
+            <div data-aos="fade-up" className="flex flex-col w-[80%] flex-1 max-w-4xl items-center justify-center gap-4">
                 <PillTab
                 tabElements={[
                     { label: "shake!", active: activeTabIdx === 0 },

@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Layout from '@/components/layout/Layout';
 import MainPage from '@/pages/MainPage';
-import StudyPage from '@/pages/StudyPage';
+//import StudyPage from '@/pages/StudyPage';
 import NotFound from './pages/NotFoundPage';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
-          <Route path="/study" element={<StudyPage />} />
+          {/* <Route path="/study" element={<StudyPage />} /> */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

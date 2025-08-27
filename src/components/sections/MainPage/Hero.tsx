@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Button from "@/components/ui/Button";
+import ScrollDownBtn from "@/components/ui/ScrollDownBtn";
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -332,6 +333,7 @@ function drawGlow(
         <h1 className="text-4xl text-white font-bold">알고리즘학회 영과일</h1>
         <Button variant="primary" onClick={() => window.open('https://forms.gle/tM5VeU42QsDkQ7cz7', '_blank')}>가입하기 →</Button>
       </div>
+      <ScrollDownBtn />
     </div>
   );
 }
