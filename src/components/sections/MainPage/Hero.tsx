@@ -60,7 +60,7 @@ export default function Hero() {
     off.height = size;
     const c = off.getContext("2d")!;
 
-    const PAD = Math.round(size * 0.05);
+    const PAD = Math.round(size * 0.03);
     const R = Math.round(size * 0.15);
     const inner = roundedRectPath(PAD, PAD, size - PAD * 2, size - PAD * 2, R);
 
@@ -127,27 +127,25 @@ function drawGlow(
   const cy = y + h / 2;
 
   // 라운드 사각형 내부에만 그리기 → 바깥 원형 헤일로 완전 차단
-  const PAD = Math.round(S * 0.05);
+  const PAD = Math.round(S * 0.03); // 기본 셀과 동일한 크기
   const R   = Math.round(S * 0.15);
   const inner = roundedRectPath(x + PAD, y + PAD, w - PAD * 2, h - PAD * 2, R);
 
   ctx.save();
+  ctx.filter = `blur(${S * 0.05}px)`; // 블러 강도 증가로 번지는게 더 잘 보이게
   ctx.clip(inner);
 
-  // 셀 안에서만 흰 → 투명으로 부드럽게 페이드
-  // 위쪽은 하얗게, 오른쪽 아래만 그림자지게
-  const offsetX = S * 0.15; // 오른쪽으로 오프셋
-  const offsetY = S * 0.15; // 아래쪽으로 오프셋
-  const g = ctx.createRadialGradient(cx - offsetX, cy - offsetY, 0, cx, cy, S * 0.8);
-  g.addColorStop(0.0, `rgba(255,255,255,${0.95 * p})`); // 위쪽 왼쪽이 가장 밝음
-  g.addColorStop(0.6, `rgba(255,255,255,${0.5 * p})`);  // 중간
-  g.addColorStop(1.0, "rgba(255,255,255,0)");           // 오른쪽 아래가 어두움
+  // 번지는 그라데이션
+  const offsetX = S * 0.15;
+  const offsetY = S * 0.15;
+  const g = ctx.createRadialGradient(cx - offsetX, cy - offsetY, 0, cx, cy, S * 1.0);
+  g.addColorStop(0.0, `rgba(255,255,255,${0.95 * p})`);
+  g.addColorStop(0.3, `rgba(255,255,255,${0.8 * p})`); // 더 진하게
+  g.addColorStop(0.6, `rgba(255,255,255,${0.4 * p})`); // 더 진하게
+  g.addColorStop(1.0, "rgba(255,255,255,0)");
 
-  // 가산합성은 유지해도 되고(더 밝게), 너무 세면 주석 처리해서 기본 합성 사용
   ctx.globalCompositeOperation = "lighter";
   ctx.fillStyle = g;
-
-  // ❗ 바깥으로 나가지 않도록 셀 영역만 채운다 (헤일로 제거 핵심)
   ctx.fillRect(x, y, w, h);
 
   ctx.restore();
@@ -328,7 +326,7 @@ function drawGlow(
 
   return (
     <div className="relative flex flex-row items-center justify-start p-4 bg-black h-full overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 cursor-cell" />
       <div className="relative flex flex-col ml-[calc(100vw/60*7)] items-start gap-4 z-10">
         <p className="text-2xl text-gray-400 font-medium">한양대학교 ERICA 소프트웨어융합대학</p>
         <h1 className="text-4xl text-white font-bold">알고리즘학회 영과일</h1>
