@@ -11,18 +11,18 @@ export default function ClubIntro() {
 
     return (
         <Background image={background}>
-            <div className="px-4 md:px-8 lg:px-16 w-full">
+            <div className="px-4 w-full max-w-5xl">
                 <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mt-[10vh] mb-6 md:mb-10">학회소개</p>
-                <p className='max-w-[57rem] mx-auto leading-relaxed text-lg md:text-xl font-semibold text-center text-violet-300 mb-8 md:mb-12'>{Text.introText}</p>
+                <p className='w-full mx-auto leading-relaxed text-lg md:text-xl font-semibold text-center text-violet-300 mb-8 md:mb-12'>{Text.introText}</p>
 
-                <ShadowBox className='max-w-6xl mx-auto'>
+                <ShadowBox className='w-full'>
                     <div className='p-6 md:p-8 lg:p-10'>
                         <p className='text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6'>설립 목적</p>
                         <p className='leading-relaxed text-lg md:text-xl font-semibold text-gray-200'>{Text.purposeText}</p>
                     </div>
                 </ShadowBox>
 
-                <ShadowBox className='max-w-6xl mx-auto'>
+                <ShadowBox className='w-full'>
                     <div className='p-6 md:p-8 lg:p-9'>
                         <p className='text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8'>주요 활동</p>
 

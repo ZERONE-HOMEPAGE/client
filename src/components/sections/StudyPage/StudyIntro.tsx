@@ -8,11 +8,11 @@ import MailIcon from "@/assets/icon/mail.png";
 import { text } from "stream/consumers";
 
 interface CheckTextProps {
-  text: string;
-  divClassName?: string;
-  iconClassName?: string;      
-  textClassName?: string;      
-  iconSrc?: string;           
+    text: string;
+    divClassName?: string;
+    iconClassName?: string;      
+    textClassName?: string;      
+    iconSrc?: string;           
 }
 
 interface ContentsProps {
@@ -87,8 +87,8 @@ export default function StudyIntro() {
     const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 
     return (
-        <div className="w-full min-h-[100vh] flex flex-col items-center p-4">
-            <h1 className="text-4xl font-bold mt-24 mb-8">스터디 소개</h1>
+        <div className="w-full flex flex-col items-center my-20">
+            <h1 className="text-3xl font-bold mb-8">스터디 소개</h1>
             <PillTab
             tabElements={[
                 { label: "C언어 기초반", active: activeTabIdx === 0 },
@@ -103,7 +103,7 @@ export default function StudyIntro() {
             textclass="font-semibold"/>
 
             {Class.filter(item => item.tabIdx === activeTabIdx).map((item, index) => (
-            <div key={index} className="w-full max-w-6xl flex flex-col items-start border-[3px] border-[#E0D7F1] rounded-lg p-10 mt-10 mx-8">
+            <div key={index} className="w-full max-w-5xl flex flex-col items-start border-2 border-[#E0D7F1] rounded-lg p-10 mt-10 mx-8">
                 <p className="text-2xl font-bold my-4">{item.name}</p>
                 {item.intro.map((introText, i) => (
                 <Icon_TextBox key={i} text={introText} divClassName="m-2" iconClassName="w-6 h-6" textClassName="text-lg text-[#9747FF] font-semibold max-w-7xl" iconSrc={CheckIcon}/>
