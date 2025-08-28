@@ -1,3 +1,6 @@
+import instagram from '@/assets/images/Instagram_logo.png';
+import kakaotalk from '@/assets/images/KakaoTalk_logo.png';
+
 export default function Contact() {
   return (
     <section className="bg-[#F0F7FF] text-black min-h-[100vh] w-full mt-4 py-16 px-4 md:px-8 flex flex-col items-center justify-center">
@@ -11,17 +14,13 @@ export default function Contact() {
         </p>
       </div>
 
-      <div className="text-center max-w-4xl w-full ">
+      <div className="text-centerq w-full ">
         <h2 className="text-2xl font-bold mb-12">회원 모집</h2>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-20">
           <div className="flex flex-col gap-6 items-start">
             <div className="flex items-center gap-3">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/2048px-Instagram_logo_2022.svg.png"
-                alt="Instagram logo"
-                className="w-8 h-8"
-              />
+              <img src={instagram} alt="Instagram logo" className="w-8 h-8" />
               <a
                 href="https://www.instagram.com/hy_zerone/"
                 target="_blank"
@@ -34,11 +33,7 @@ export default function Contact() {
             </div>
 
             <div className="flex items-center gap-3">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/KakaoTalk_logo.svg/1024px-KakaoTalk_logo.svg.png"
-                alt="KakaoTalk logo"
-                className="w-8 h-8"
-              />
+              <img src={kakaotalk} alt="KakaoTalk logo" className="w-8 h-8" />
               <a
                 href="http://pf.kakao.com/_eqEZd"
                 target="_blank"
