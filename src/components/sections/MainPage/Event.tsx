@@ -67,10 +67,10 @@ export default function Event() {
     ];
     
     return (
-        <div className='w-full flex flex-col items-center justify-center p-4 gap-5 h-full pb-20'>
-            <p className="text-2xl font-bold text-center mb-6 mt-10">이달의 주요 이벤트</p>
+        <div className='w-full flex flex-col items-center justify-center gap-5 h-full pb-20'>
+            <p className="text-3xl font-bold text-center mb-6 mt-10">이달의 주요 이벤트</p>
 
-            <div className="block md:hidden w-full"> {/* 모바일 화면 */}
+            <div className="block md:hidden w-full px-4"> {/* 모바일 화면 */}
                 <div className="w-full flex flex-col gap-8">
 
                     <Swiper modules={[Navigation, Pagination, Autoplay]} 
