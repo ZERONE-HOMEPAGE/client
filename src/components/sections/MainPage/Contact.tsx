@@ -4,7 +4,7 @@ import kakaotalk from '@/assets/images/KakaoTalk_logo.png';
 export default function Contact() {
   return (
     <section className="bg-[#F0F7FF] text-black min-h-[100vh] w-full mt-4 py-16 px-4 md:px-8 flex flex-col items-center justify-center">
-      <div className="mb-24 text-center max-w-[80%]">
+      <div className="mb-24 text-center max-w-5xl">
         <h2 className="text-2xl font-bold mb-12">학회 목표</h2>
         <p className="text-base w-full">
           저희 알고리즘학회는 알고리즘과 프로그래밍의 즐거움을 함께 나누고 문제를 해결하는 과정에서
