@@ -56,7 +56,7 @@ export default function Awards() {
                 <h1 className="text-3xl font-bold mt-3 md:mt-5 -mb-32 md:mb-0">수상 이력</h1>
             </div>
 
-            <div data-aos="fade-up" className="flex flex-col w-[80%] flex-1 max-w-4xl items-center justify-center gap-4">
+            <div data-aos="fade-up" className="flex flex-col flex-1 w-full max-w-5xl items-center justify-center gap-4">
                 <PillTab
                 tabElements={[
                     { label: "shake!", active: activeTabIdx === 0 },
@@ -87,7 +87,7 @@ export default function Awards() {
                 ))}
                 </div>
             </div>
-            <p className="max-w-[25rem] md:max-w-[51rem] leading-relaxed text-sm md:text-lg font-bold text-center mb-4 md:mb-12 -mt-32 md:mt-0 px-4">
+            <p className="max-w-5xl leading-relaxed text-sm md:text-lg font-bold text-center mb-4 md:mb-12 -mt-32 md:mt-0">
             위와 같은 수상 경험을 통해 알고리즘 문제 해결 능력을 입증하였으며 다양한 문제 유형을 분석하고 해결하는 과정에서 논리적 사고력과 실전 감각을 지속적으로 향상시켜 왔습니다.
             </p>
             
