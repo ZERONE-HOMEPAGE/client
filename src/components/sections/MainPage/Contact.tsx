@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <section className="bg-[#F0F7FF] text-black min-h-[90vh] w-full mt-4 py-16 px-4 md:px-8 flex flex-col items-center justify-center">
+    <section className="bg-[#F0F7FF] text-black min-h-[100vh] w-full mt-4 py-16 px-4 md:px-8 flex flex-col items-center justify-center">
       <div className="mb-24 text-center max-w-[80%]">
         <h2 className="text-2xl font-bold mb-12">학회 목표</h2>
         <p className="text-base w-full">
@@ -22,7 +22,15 @@ export default function Contact() {
                 alt="Instagram logo"
                 className="w-8 h-8"
               />
-              <p className="font-medium">Instagram : @hy_zerone</p>
+              <a
+                href="https://www.instagram.com/hy_zerone/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram으로 이동"
+                className="font-medium"
+              >
+                Instagram : @hy_zerone
+              </a>
             </div>
 
             <div className="flex items-center gap-3">
@@ -31,7 +39,15 @@ export default function Contact() {
                 alt="KakaoTalk logo"
                 className="w-8 h-8"
               />
-              <p className="font-medium">카카오톡 채널 : 영과일</p>
+              <a
+                href="http://pf.kakao.com/_eqEZd"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="카카오톡 채널로 이동"
+                className="font-medium"
+              >
+                카카오톡 채널 : 영과일
+              </a>
             </div>
           </div>
 
