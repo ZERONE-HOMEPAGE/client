@@ -32,6 +32,7 @@ export default function Hero() {
 
   // 캔버스/그리드
   const canvasInfoRef = useRef<{ cols: number; rows: number; cellWidth: number; cellHeight: number } | null>(null);
+  const cellSizeRef = useRef({ cw: 0, ch: 0 });
 
   // 베이스 타일 (검정 볼록)
   const baseTileRef = useRef<HTMLCanvasElement | null>(null);
@@ -55,48 +56,56 @@ export default function Hero() {
     return p;
   }
 
-  function makeBaseTile(size = 120): HTMLCanvasElement {
+  function makeBaseTile(sizeCSS = 120, dpr = Math.max(1, window.devicePixelRatio || 1)): HTMLCanvasElement {
     const off = document.createElement("canvas");
-    off.width = size;
-    off.height = size;
+    off.width = Math.round(sizeCSS * dpr);
+    off.height = Math.round(sizeCSS * dpr);
     const c = off.getContext("2d")!;
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const PAD = Math.round(size * 0.03);
-    const R = Math.round(size * 0.15);
-    const inner = roundedRectPath(PAD, PAD, size - PAD * 2, size - PAD * 2, R);
+    // 기본 치수
+    const PAD = Math.round(sizeCSS * 0.03);
+    const R   = Math.round(sizeCSS * 0.15);
 
-    // 배경
+    // ✅ 최소 1px( CSS px ) 테두리 강제
+    const BORDER = Math.max(1, Math.round(sizeCSS * 0.02)); // 비율+하한
+    const inner = roundedRectPath(
+      PAD + BORDER,
+      PAD + BORDER,
+      sizeCSS - 2*(PAD + BORDER),
+      sizeCSS - 2*(PAD + BORDER),
+      Math.max(1, R - BORDER)
+    );
+
+    // 기본 면만 칠하기 (테두리 X)
     c.fillStyle = "#111";
     c.fill(inner);
 
-    // 헬퍼: inset shadow 근사
-    function drawInsetGradient(color: string, offsetX: number, offsetY: number) {
-      c.save();
-      c.clip(inner);
+    // 그라데이션/인셋은 'inner' 기준으로만 적용 → 테두리 보존
+    c.save();
+    c.clip(inner);
 
-      // inset은 안쪽에서 바깥쪽으로 어두워져야 하므로, gradient 방향 조절
-      const g = c.createLinearGradient(
-        PAD + offsetX, PAD + offsetY,
-        size - PAD, size - PAD
-      );
-      g.addColorStop(0, color);
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      c.fillStyle = g;
+    const g1 = c.createLinearGradient(PAD+3, PAD+3, sizeCSS-PAD, sizeCSS-PAD);
+    g1.addColorStop(0, "rgba(93,93,93,0.45)");
+    g1.addColorStop(1, "rgba(0,0,0,0)");
+    c.fillStyle = g1;
+    c.fillRect(PAD, PAD, sizeCSS - 2*PAD, sizeCSS - 2*PAD);
 
-      c.fillRect(PAD, PAD, size - PAD * 2, size - PAD * 2);
-      c.restore();
-    }
+    const g2 = c.createLinearGradient(PAD-4, PAD-2, sizeCSS-PAD, sizeCSS-PAD);
+    g2.addColorStop(0, "rgba(83,83,83,0.65)");
+    g2.addColorStop(1, "rgba(0,0,0,0)");
+    c.fillStyle = g2;
+    c.fillRect(PAD, PAD, sizeCSS - 2*PAD, sizeCSS - 2*PAD);
 
-    // 1) inset 3px 3px 4px -1px rgba(93,93,93,0.45)
-    drawInsetGradient("rgba(93,93,93,0.45)", 3, 3);
+    const g3 = c.createLinearGradient(PAD-2, PAD, sizeCSS-PAD, sizeCSS-PAD);
+    g3.addColorStop(0, "rgba(0,0,0,0.53)");
+    g3.addColorStop(1, "rgba(0,0,0,0)");
+    c.fillStyle = g3;
+    c.fillRect(PAD, PAD, sizeCSS - 2*PAD, sizeCSS - 2*PAD);
 
-    // 2) inset -4px -2px 4px 0px rgba(83,83,83,0.65)
-    drawInsetGradient("rgba(83,83,83,0.65)", -4, -2);
+    c.restore();
 
-    // 3) inset -2px 0px 2px -1px rgba(0,0,0,0.53)
-    drawInsetGradient("rgba(0,0,0,0.53)", -2, 0);
-
-    // 4) drop shadow 0px 0px 4px 0px rgba(0,0,0,1)
+    // 드랍섀도우(선택)
     c.save();
     c.shadowColor = "rgba(0,0,0,1)";
     c.shadowBlur = 4;
@@ -123,23 +132,22 @@ function drawGlow(
 ) {
   if (p <= 0) return;
 
-  const S = Math.min(w, h);
   const cx = x + w / 2;
   const cy = y + h / 2;
 
   // 라운드 사각형 내부에만 그리기 → 바깥 원형 헤일로 완전 차단
-  const PAD = Math.round(S * 0.03); // 기본 셀과 동일한 크기
-  const R   = Math.round(S * 0.15);
+  // baseTile과 동일한 비율 사용
+  const PAD = Math.round(Math.min(w, h) * 0.03); 
+  const R   = Math.round(Math.min(w, h) * 0.15);
   const inner = roundedRectPath(x + PAD, y + PAD, w - PAD * 2, h - PAD * 2, R);
 
   ctx.save();
-  ctx.filter = `blur(${S * 0.05}px)`; // 블러 강도 증가로 번지는게 더 잘 보이게
   ctx.clip(inner);
 
-  // 번지는 그라데이션
-  const offsetX = S * 0.15;
-  const offsetY = S * 0.15;
-  const g = ctx.createRadialGradient(cx - offsetX, cy - offsetY, 0, cx, cy, S * 1.0);
+  // 번지는 그라데이션 - 실제 셀 크기에 맞춰 조정
+  const offsetX = Math.min(w, h) * 0.15;
+  const offsetY = Math.min(w, h) * 0.15;
+  const g = ctx.createRadialGradient(cx - offsetX, cy - offsetY, 0, cx, cy, Math.min(w, h) * 0.8);
   g.addColorStop(0.0, `rgba(255,255,255,${0.95 * p})`);
   g.addColorStop(0.3, `rgba(255,255,255,${0.8 * p})`); // 더 진하게
   g.addColorStop(0.6, `rgba(255,255,255,${0.4 * p})`); // 더 진하게
@@ -169,8 +177,9 @@ function drawGlow(
     const cellWidth = canvas.width / cols;
     const cellHeight = canvas.height / rows;
     canvasInfoRef.current = { cols, rows, cellWidth, cellHeight };
+    cellSizeRef.current = { cw: cellWidth, ch: cellHeight };
 
-    baseTileRef.current = makeBaseTile(120);
+    baseTileRef.current = makeBaseTile(Math.min(cellWidth, cellHeight));
 
     glowRef.current = new Float32Array(cols * rows);
     targetRef.current = new Float32Array(cols * rows);
@@ -186,9 +195,13 @@ function drawGlow(
     const drawAll = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-        const x = c * cellWidth, y = r * cellHeight;
-        if (baseTileRef.current) ctx.drawImage(baseTileRef.current, x, y, cellWidth, cellHeight);
-        drawGlow(ctx, x, y, cellWidth, cellHeight, glowRef.current![r*cols+c]);
+        const x0 = Math.round(c * cellWidth);
+        const x1 = Math.round((c + 1) * cellWidth);
+        const y0 = Math.round(r * cellHeight);
+        const y1 = Math.round((r + 1) * cellHeight);
+        const w = x1 - x0, h = y1 - y0;
+        if (baseTileRef.current) ctx.drawImage(baseTileRef.current, x0, y0, w, h);
+        drawGlow(ctx, x0, y0, w, h, glowRef.current![r*cols+c]);
       }
     };
     drawAll();
@@ -209,10 +222,15 @@ function drawGlow(
         const next = cur + (tgt - cur) * k;
         glowRef.current![idx] = next; anyDirty = true;
 
-        const x = c * cellWidth, y = r * cellHeight;
-        ctx.clearRect(x, y, cellWidth, cellHeight);
-        if (baseTileRef.current) ctx.drawImage(baseTileRef.current, x, y, cellWidth, cellHeight);
-        drawGlow(ctx, x, y, cellWidth, cellHeight, next);
+        const x0 = Math.round(c * cellWidth);
+        const x1 = Math.round((c + 1) * cellWidth);
+        const y0 = Math.round(r * cellHeight);
+        const y1 = Math.round((r + 1) * cellHeight);
+        const w = x1 - x0, h = y1 - y0;
+        // 여유 패딩으로 완전히 지우기
+        ctx.clearRect(x0 - 2, y0 - 2, w + 4, h + 4);
+        if (baseTileRef.current) ctx.drawImage(baseTileRef.current, x0, y0, w, h);
+        drawGlow(ctx, x0, y0, w, h, next);
       }
       if (anyDirty) rafRef.current = requestAnimationFrame(step);
       else { animatingRef.current = false; rafRef.current = null; }
@@ -230,9 +248,10 @@ function drawGlow(
     let lastHovered: { col: number; row: number } | null = null;
 
     const handleMouseMove = (e: MouseEvent) => {
+      const { cw, ch } = cellSizeRef.current;  // 최신 셀 크기 사용
       const rect = canvas.getBoundingClientRect();
-      const col = Math.floor((e.clientX - rect.left) / cellWidth);
-      const row = Math.floor((e.clientY - rect.top) / cellHeight);
+      const col = Math.floor((e.clientX - rect.left) / cw);
+      const row = Math.floor((e.clientY - rect.top) / ch);
       const ok = col >= 0 && col < cols && row >= 0 && row < rows;
       const curr = ok ? { col, row } : null;
 
@@ -274,9 +293,10 @@ function drawGlow(
     };
 
     const handleClick = (e: MouseEvent) => {
+      const { cw, ch } = cellSizeRef.current;  // 최신 셀 크기 사용
       const rect = canvas.getBoundingClientRect();
-      const col = Math.floor((e.clientX - rect.left) / cellWidth);
-      const row = Math.floor((e.clientY - rect.top) / cellHeight);
+      const col = Math.floor((e.clientX - rect.left) / cw);
+      const row = Math.floor((e.clientY - rect.top) / ch);
       if (col < 0 || col >= cols || row < 0 || row >= rows) return;
 
       const key = `${col}-${row}`;
@@ -302,12 +322,17 @@ function drawGlow(
       canvas.height = window.innerHeight;
       const cw = canvas.width / cols, ch = canvas.height / rows;
       canvasInfoRef.current = { cols, rows, cellWidth: cw, cellHeight: ch };
+      baseTileRef.current = makeBaseTile(Math.min(cw, ch)); // baseTile 재생성
       const ctx2 = canvas.getContext("2d")!;
       ctx2.clearRect(0, 0, canvas.width, canvas.height);
       for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-        const x = c * cw, y = r * ch;
-        if (baseTileRef.current) ctx2.drawImage(baseTileRef.current, x, y, cw, ch);
-        drawGlow(ctx2, x, y, cw, ch, glowRef.current![r*cols+c]);
+        const x0 = Math.round(c * cw);
+        const x1 = Math.round((c + 1) * cw);
+        const y0 = Math.round(r * ch);
+        const y1 = Math.round((r + 1) * ch);
+        const w = x1 - x0, h = y1 - y0;
+        if (baseTileRef.current) ctx2.drawImage(baseTileRef.current, x0, y0, w, h);
+        drawGlow(ctx2, x0, y0, w, h, glowRef.current![r*cols+c]);
       }
     };
 

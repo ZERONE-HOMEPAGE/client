@@ -48,7 +48,7 @@ export default function ClubIntro() {
                             <div key={idx}
                                 onMouseEnter={() => setHoveredIdx(idx)}
                                 onMouseLeave={() => setHoveredIdx(null)}
-                                className={`transition-all duration-300 cursor-pointer ${hoveredIdx === idx ? "scale-110 z-10" : hoveredIdx !== null ? "scale-90 opacity-70" : ""}`}>
+                                className={`transition-all duration-300 cursor-pointer ${hoveredIdx === idx ? "scale-105 z-10" : hoveredIdx !== null ? "scale-95 opacity-70" : ""}`}>
                                 <IconBox IconUrl={card.IconUrl} T1={card.T1} T2={card.T2} />
                             </div>
                             ))}
