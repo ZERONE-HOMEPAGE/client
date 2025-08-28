@@ -3,7 +3,7 @@ import competetionImg from "@/assets/images/competition.jpg";
 
 export default function CompetitionHistory() {
     return (
-        <div className="px-4 md:px-0 w-full max-w-5xl min-h-[100vh] flex flex-col items-center justify-evenly gap-6 md:gap-10 py-8">
+        <div className="px-4 w-full max-w-5xl min-h-[100vh] flex flex-col items-center justify-evenly gap-6 md:gap-10 py-8">
             <div className="flex flex-col items-center justify-center">
                 <p className="font-bold text-2xl mt-10">자체 경진대회</p>
                 <h1 className="text-3xl font-bold mb-4 mt-3">개최 이력</h1>

@@ -11,7 +11,7 @@ export default function ClubIntro() {
 
     return (
         <Background image={background}>
-            <div className="px-4 md:px-0 w-full max-w-5xl">
+            <div className="px-4 w-full max-w-5xl">
                 <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mt-[10vh] mb-6 md:mb-10">학회소개</p>
                 <p className='w-full mx-auto leading-relaxed text-lg md:text-xl font-semibold text-center text-violet-300 mb-8 md:mb-12'>{Text.introText}</p>
 
