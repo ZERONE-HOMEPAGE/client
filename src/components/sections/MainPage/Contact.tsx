@@ -14,7 +14,7 @@ export default function Contact() {
         </p>
       </div>
 
-      <div className="text-centerq w-full ">
+      <div className="text-center w-full ">
         <h2 className="text-2xl font-bold mb-12">회원 모집</h2>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-20">
