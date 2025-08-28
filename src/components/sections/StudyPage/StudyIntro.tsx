@@ -121,7 +121,7 @@ export default function StudyIntro() {
                 <p className="text-lg font-semibold mt-10 mb-5">멘토진</p>
                 <div className="flex flex-wrap gap-8">
                     {item.mentor.map((mentor, k) => (
-                    <Mentor Name={mentor[0]} Department={mentor[1]} Email={mentor[2]}/>
+                    <Mentor key={k} Name={mentor[0]} Department={mentor[1]} Email={mentor[2]}/>
                     ))}
                 </div>
             </div>
