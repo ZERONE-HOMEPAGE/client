@@ -5,7 +5,6 @@ import LineIcon from "@/assets/icon/line.png";
 import UserIcon from "@/assets/icon/user.png";
 import HomeIcon from "@/assets/icon/home.png";
 import MailIcon from "@/assets/icon/mail.png";
-import { text } from "stream/consumers";
 
 interface CheckTextProps {
     text: string;
@@ -87,7 +86,7 @@ export default function StudyIntro() {
     const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
 
     return (
-        <div className="w-full flex flex-col items-center my-20">
+        <div className="px-4 w-full flex flex-col items-center my-20">
             <h1 className="text-3xl font-bold mb-8">스터디 소개</h1>
             <PillTab
             tabElements={[
@@ -135,10 +134,10 @@ export default function StudyIntro() {
 function Icon_TextBox({ text, divClassName = "", iconClassName = "", textClassName = "", iconSrc }: CheckTextProps) {
     return (
         <div className={`flex items-center gap-3 ${divClassName}`}>
-      <img src={iconSrc} alt="Icon" className={`${iconClassName}`}/>
-      <p className={`${textClassName}`}>{text}</p>
-    </div>
-  );
+        <img src={iconSrc} alt="Icon" className={`${iconClassName}`}/>
+        <p className={`${textClassName}`}>{text}</p>
+        </div>
+    );
 }
 
 function Line({ Week, Content }: ContentsProps) {
@@ -155,7 +154,7 @@ function Line({ Week, Content }: ContentsProps) {
 
 function Mentor({ ImgUrl, Name, Department, Email }: MentorProps) {
     return (
-         <div className={"flex flex-row pb-4"}>
+        <div className={"flex flex-row pb-4"}>
             {ImgUrl ? <img src={ImgUrl} alt="사진" className="w-24 h-32 object-cover" /> : <div className="w-24 h-32 bg-[#D9D9D9]"/>}
             <div className="flex flex-col justify-center ml-4">
                 <Icon_TextBox text={Name} iconSrc={UserIcon} divClassName="m-0.5" textClassName="font-semibold text-md" iconClassName="w-4 h-4"/>
