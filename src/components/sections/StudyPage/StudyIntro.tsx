@@ -5,6 +5,7 @@ import LineIcon from "@/assets/icon/line.png";
 import UserIcon from "@/assets/icon/user.png";
 import HomeIcon from "@/assets/icon/home.png";
 import MailIcon from "@/assets/icon/mail.png";
+import { text } from "stream/consumers";
 
 interface CheckTextProps {
   text: string;
@@ -87,26 +88,27 @@ export default function StudyIntro() {
 
     return (
         <div className="w-full min-h-[100vh] flex flex-col items-center p-4">
-            <h1 className="text-3xl font-bold mt-40 mb-8">스터디 소개</h1>
+            <h1 className="text-4xl font-bold mt-24 mb-8">스터디 소개</h1>
             <PillTab
             tabElements={[
-                { label: "  C언어 기초반 ", active: activeTabIdx === 0 },
-                { label: "  브릿지반    ", active: activeTabIdx === 1 },
-                { label: "  자료구조반 ", active: activeTabIdx === 2 },
-                { label: "  알고리즘반 ", active: activeTabIdx === 3 },
-                { label: "  코드포스반 ", active: activeTabIdx === 4 },
-                { label: "  변태반    ", active: activeTabIdx === 5 }
+                { label: "C언어 기초반", active: activeTabIdx === 0 },
+                { label: "브릿지반", active: activeTabIdx === 1 },
+                { label: "자료구조반", active: activeTabIdx === 2 },
+                { label: "알고리즘반", active: activeTabIdx === 3 },
+                { label: "코드포스반", active: activeTabIdx === 4 },
+                { label: "변태반", active: activeTabIdx === 5 }
             ]}
             clickHandler={(index) => setActiveTabIdx(index)}
-            activeTabIdx={activeTabIdx}/>
+            activeTabIdx={activeTabIdx}
+            textclass="font-semibold"/>
 
             {Class.filter(item => item.tabIdx === activeTabIdx).map((item, index) => (
-            <div key={index} className="w-full max-w-6xl flex flex-col items-start border-2 border-[#E0D7F1] rounded-lg p-10 mt-10 mx-8">
+            <div key={index} className="w-full max-w-6xl flex flex-col items-start border-[3px] border-[#E0D7F1] rounded-lg p-10 mt-10 mx-8">
                 <p className="text-2xl font-bold my-4">{item.name}</p>
                 {item.intro.map((introText, i) => (
                 <Icon_TextBox key={i} text={introText} divClassName="m-2" iconClassName="w-6 h-6" textClassName="text-lg text-[#9747FF] font-semibold max-w-7xl" iconSrc={CheckIcon}/>
                 ))}
-                <div className="w-full self-center bg-gray-500/20 rounded-lg p-6 mt-5">
+                <div className="w-full self-center bg-[#EBEBEB] rounded-lg p-6 mt-5">
                     <p className="mb-2">대상</p>
                     <p className="font-semibold text-lg">{item.target}</p>
                 </div>
@@ -133,7 +135,7 @@ export default function StudyIntro() {
 function Icon_TextBox({ text, divClassName = "", iconClassName = "", textClassName = "", iconSrc }: CheckTextProps) {
     return (
         <div className={`flex items-center gap-3 ${divClassName}`}>
-      <img src={iconSrc} alt="Icon" className={`w-6 h-6 ${iconClassName}`}/>
+      <img src={iconSrc} alt="Icon" className={`${iconClassName}`}/>
       <p className={`${textClassName}`}>{text}</p>
     </div>
   );
@@ -143,23 +145,22 @@ function Line({ Week, Content }: ContentsProps) {
     return (
         <div className="w-full flex flex-row h-full items-center">
             <img src={LineIcon} alt="라인아이콘" className="w-3 h-18" />
-            <div className="w-full ml-8 p-3 flex flex-row items-center border-2 border-gray-500/50 rounded-xl">
-                <p className="text-gray-500/50 font-semibold text-sm mx-4">{Week}주차</p>
-                <p className="mx-4">{Content}</p>
+            <div className="w-full ml-8 p-3 flex flex-row items-center border-2 border-[#D9D9D9] rounded-xl">
+                <p className="text-[#919191] font-semibold text-sm mx-4">{Week}주차</p>
+                <p className="mx-4 font-semibold">{Content}</p>
             </div>
         </div>
     );
 }
 
-
 function Mentor({ ImgUrl, Name, Department, Email }: MentorProps) {
     return (
          <div className={"flex flex-row pb-4"}>
-            {ImgUrl ? <img src={ImgUrl} alt="사진" className="w-24 h-32 object-cover" /> : <div className="w-24 h-32 bg-gray-700/50"/>}
+            {ImgUrl ? <img src={ImgUrl} alt="사진" className="w-24 h-32 object-cover" /> : <div className="w-24 h-32 bg-[#D9D9D9]"/>}
             <div className="flex flex-col justify-center ml-4">
-                <Icon_TextBox text={Name} iconSrc={UserIcon} divClassName="m-1" textClassName="m-1" iconClassName="w-5 h-5"/>
-                <Icon_TextBox text={Department} iconSrc={HomeIcon} divClassName="m-1" textClassName="text-gray-500/50" iconClassName="w-5 h-5"/>
-                <Icon_TextBox text={Email} iconSrc={MailIcon} divClassName="m-1" textClassName="text-gray-500/50" iconClassName="w-5 h-5"/>
+                <Icon_TextBox text={Name} iconSrc={UserIcon} divClassName="m-0.5" textClassName="font-semibold text-md" iconClassName="w-4 h-4"/>
+                <Icon_TextBox text={Department} iconSrc={HomeIcon} divClassName="m-0.5" textClassName="text-[#919191] text-md" iconClassName="w-4 h-4"/>
+                <Icon_TextBox text={Email} iconSrc={MailIcon} divClassName="m-0.5" textClassName="text-[#919191] text-md" iconClassName="w-4 h-4"/>
             </div>
         </div>
     );

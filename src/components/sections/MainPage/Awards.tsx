@@ -63,7 +63,8 @@ export default function Awards() {
                     { label: "HEPC", active: activeTabIdx === 1 },
                 ]}
                 clickHandler={(index) => setActiveTabIdx(index)}
-                activeTabIdx={activeTabIdx}/>
+                activeTabIdx={activeTabIdx}
+                textclass="font-semibold"/>
 
                 <div className="w-full bg-[#DCDAEF] min-h-[300px] md:min-h-[350px] rounded-lg grid grid-cols-2 md:grid-cols-3 gap-2 p-3">
                     {awards.filter((award) => award.tabIdx === activeTabIdx).map((award, index) => (
