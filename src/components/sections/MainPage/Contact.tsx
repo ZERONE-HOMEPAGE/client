@@ -14,7 +14,7 @@ export default function Contact() {
       <div className="text-center max-w-4xl w-full ">
         <h2 className="text-2xl font-bold mb-12">회원 모집</h2>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-14">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-20">
           <div className="flex flex-col gap-6 items-start">
             <div className="flex items-center gap-3">
               <img
