@@ -7,26 +7,31 @@ export default function useScrollTo() {
     };
 
     const scrollDown = () => {
-        const start = window.scrollY;
-        const target = start + window.innerHeight;
-        const duration = 800;
-        
-        const animateScroll = (currentTime: number, startTime: number) => {
-            const timeElapsed = currentTime - startTime;
-            const progress = Math.min(timeElapsed / duration, 1);
+        // 헤더 높이를 제외하고 스크롤
+        const element = document.getElementById('event');
+        if (element) {
+            const start = window.scrollY;
+            const headerHeight = 64; // 헤더 높이
+            const target = element.offsetTop - headerHeight;
+            const duration = 800;
             
-            const ease = progress < 0.5 
-                ? 4 * progress * progress * progress 
-                : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+            const animateScroll = (currentTime: number, startTime: number) => {
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                const ease = progress < 0.5 
+                    ? 4 * progress * progress * progress 
+                    : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+                
+                window.scrollTo(0, start + (target - start) * ease);
+                
+                if (progress < 1) {
+                    requestAnimationFrame((time) => animateScroll(time, startTime));
+                }
+            };
             
-            window.scrollTo(0, start + (target - start) * ease);
-            
-            if (progress < 1) {
-                requestAnimationFrame((time) => animateScroll(time, startTime));
-            }
-        };
-        
-        requestAnimationFrame((time) => animateScroll(time, time));
+            requestAnimationFrame((time) => animateScroll(time, time));
+        }
     };
 
     const scrollToTop = () => {

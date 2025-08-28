@@ -9,6 +9,7 @@ import Layout from '@/components/layout/Layout';
 import MainPage from '@/pages/MainPage';
 import StudyPage from '@/pages/StudyPage';
 import NotFound from './pages/NotFoundPage';
+import CompilerPage from './pages/CompilerPage';
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/study" element={<StudyPage />} />
+          <Route path="/compiler" element={<CompilerPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
