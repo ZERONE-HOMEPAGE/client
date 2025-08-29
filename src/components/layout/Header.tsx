@@ -14,7 +14,7 @@ export default function Header() {
     { name: '스터디', path: '/study' },
     { name: '활동', path: null },
     { name: '게시판', path: null },
-    { name: '컴파일러', path: '/compiler' },
+    { name: '컴파일러', path: 'https://zerone01.kr/compiler', external: true },
     { name: 'Q&A', path: null },
   ];
 
@@ -72,12 +72,18 @@ export default function Header() {
 
           <div>
             <ul className="md:flex hidden flex-row space-x-5">
-              {menuItems.map(({ name, path }) => (
+              {menuItems.map(({ name, path, external }) => (
                 <li key={name}>
                   {path ? (
-                    <NavLink to={path} className={({ isActive }) => (isActive ? 'font-bold' : '')}>
-                      {name}
-                    </NavLink>
+                    external ? (
+                      <a href={path}>
+                        {name}
+                      </a>
+                    ) : (
+                      <NavLink to={path} className={({ isActive }) => (isActive ? 'font-bold' : '')}>
+                        {name}
+                      </NavLink>
+                    )
                   ) : (
                     <span>{name}</span>
                   )}
@@ -104,17 +110,26 @@ export default function Header() {
               </button>
             </div>
             <ul className="flex flex-col space-y-4 p-4 ">
-              {menuItems.map(({ name, path }) => (
+              {menuItems.map(({ name, path, external }) => (
                 <li key={name} onClick={barClick} className="w-full">
                   {path ? (
-                    <NavLink
-                      to={path}
-                      className={({ isActive }) =>
-                        'block w-full p-3 rounded ' + (isActive ? 'font-bold' : '')
-                      }
-                    >
-                      {name}
-                    </NavLink>
+                    external ? (
+                      <a
+                        href={path}
+                        className="block w-full p-3 rounded"
+                      >
+                        {name}
+                      </a>
+                    ) : (
+                      <NavLink
+                        to={path}
+                        className={({ isActive }) =>
+                          'block w-full p-3 rounded ' + (isActive ? 'font-bold' : '')
+                        }
+                      >
+                        {name}
+                      </NavLink>
+                    )
                   ) : (
                     <div className="block w-full p-3">{name}</div>
                   )}
