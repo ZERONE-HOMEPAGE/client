@@ -222,10 +222,12 @@ function drawGlow(
         const next = cur + (tgt - cur) * k;
         glowRef.current![idx] = next; anyDirty = true;
 
-        const x0 = Math.round(c * cellWidth);
-        const x1 = Math.round((c + 1) * cellWidth);
-        const y0 = Math.round(r * cellHeight);
-        const y1 = Math.round((r + 1) * cellHeight);
+        const currentCellWidth = canvas.width / cols;
+        const currentCellHeight = canvas.height / rows;
+        const x0 = Math.round(c * currentCellWidth);
+        const x1 = Math.round((c + 1) * currentCellWidth);
+        const y0 = Math.round(r * currentCellHeight);
+        const y1 = Math.round((r + 1) * currentCellHeight);
         const w = x1 - x0, h = y1 - y0;
         // 여유 패딩으로 완전히 지우기
         ctx.clearRect(x0 - 2, y0 - 2, w + 4, h + 4);
@@ -248,10 +250,11 @@ function drawGlow(
     let lastHovered: { col: number; row: number } | null = null;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const { cw, ch } = cellSizeRef.current;  // 최신 셀 크기 사용
       const rect = canvas.getBoundingClientRect();
-      const col = Math.floor((e.clientX - rect.left) / cw);
-      const row = Math.floor((e.clientY - rect.top) / ch);
+      const currentCellWidth = rect.width / cols;
+      const currentCellHeight = rect.height / rows;
+      const col = Math.floor((e.clientX - rect.left) / currentCellWidth);
+      const row = Math.floor((e.clientY - rect.top) / currentCellHeight);
       const ok = col >= 0 && col < cols && row >= 0 && row < rows;
       const curr = ok ? { col, row } : null;
 
@@ -293,10 +296,11 @@ function drawGlow(
     };
 
     const handleClick = (e: MouseEvent) => {
-      const { cw, ch } = cellSizeRef.current;  // 최신 셀 크기 사용
       const rect = canvas.getBoundingClientRect();
-      const col = Math.floor((e.clientX - rect.left) / cw);
-      const row = Math.floor((e.clientY - rect.top) / ch);
+      const currentCellWidth = rect.width / cols;
+      const currentCellHeight = rect.height / rows;
+      const col = Math.floor((e.clientX - rect.left) / currentCellWidth);
+      const row = Math.floor((e.clientY - rect.top) / currentCellHeight);
       if (col < 0 || col >= cols || row < 0 || row >= rows) return;
 
       const key = `${col}-${row}`;
@@ -348,7 +352,7 @@ function drawGlow(
       window.removeEventListener("resize", handleResize);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [drawGlow,makeBaseTile,initialCells]);
 
   return (
     <div className="relative flex flex-row items-center justify-start p-4 bg-black h-full overflow-hidden">

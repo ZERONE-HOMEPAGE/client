@@ -20,10 +20,10 @@ interface ContentsProps {
 }
 
 interface MentorProps {
-    ImgUrl?: string;
     Name: string;
     Department: string;
     Email: string;
+    Message?: string;
 }
 
 export default function StudyIntro() {
@@ -33,54 +33,54 @@ export default function StudyIntro() {
         intro:["C언어에 대한 이해를 높이고 문제를 통해 적용해보며 학습", "직접 코드를 작성해보며 프로그램 동작 원리에 대한 이해", "이후에 듣게 될 자료구조나 알고리즘 스터디 대비 및 문제 해결 능력 향상"],
         target: "프로그래밍이 처음이거나, C언어를 기초부터 배우고 싶으신 분",
         contents: ["입출력", "연산자", "조건문", "반복문", "배열", "함수"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"]]
+        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "프로그래밍이 처음이어도 걱정하지 마세요! 차근차근 함께 배워나가요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "기초부터 탄탄히 쌓아가며 재미있게 공부해봅시다!"],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "언제든 궁금한 점이 있으면 편하게 물어보세요."]]
     }, {
         tabIdx: 1,
         name: "브릿지반",
-        intro:["기초반과 자료구조반 사이의 난이도를 다루는 중간 단계", "포인터 개념과 메모리 구조 이해를 중심으로 학습"],
-        target: "C언어 문법은 익혔지만 포인터와 심화 문법을 배우고 싶은 분",
-        contents: ["포인터 기초", "포인터와 배열", "동적 메모리 할당", "문자열과 포인터", "함수 포인터", "포인터 활용 프로젝트"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"]]
+        intro:["기초반과 자료구조반 사이의 난이도를 다루는 중간 단계", "포인터, 재귀함수, 자료구조 등 C언어에서 심화 학습에 필요한 핵심 개념을 다룸"],
+        target: "C언어에서 함수와 다차원 배열을 모두 다뤄보신 분",
+        contents: ["포인터", "다차원 배열 복습", "재귀함수", "구조체"],
+        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "브릿지반에서 한 단계 더 성장해보세요!"],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "포인터를 정복하고 프로그래밍 실력을 업그레이드하세요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "심화 과정을 위한 든든한 준비를 함께해요."]]
     }, {
         tabIdx: 2,
         name: "자료구조반",
-        intro:["실제 문제 해결에 필요한 핵심 자료구조들을 학습", "스택, 큐, 그래프, 트리 등 기초 알고리즘에 필수적인 구조 다룸", "BFS, DFS와 같은 탐색 알고리즘을 구현해봄"],
-        target: "프로그래밍 기초를 마치고 자료구조와 탐색 알고리즘을 배우고 싶은 분",
-        contents: ["스택", "큐", "힙", "맵", "그래프", "BFS/DFS", "트리", "정리 및 실습"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"]]
+        intro:["자료구조에 대한 설명과 C++기반 문제풀이 위주 진행", "C언어 기초 개념을 알고 있고, 구현이 가능하다는 전제 하에 진행됩니다."],
+        target: "배열을 이용한 구현이 가능한 분 또는 본인이 자료구조에 대한 이해가 부족하다고 생각하시는 분",
+        contents: ["C++ STL", "스택", "큐", "그래프", "트리"],
+        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "자료구조는 프로그래밍의 핵심입니다. 확실히 익혀봅시다!"],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "이론과 실습을 병행하며 체계적으로 학습해요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "문제 풀이를 통해 실력을 탄탄히 다져보세요."]]
     }, {
         tabIdx: 3,
         name: "알고리즘반",
-        intro:["다양한 문제 해결 패턴과 고급 알고리즘 학습", "코딩 테스트와 프로그래밍 대회 준비를 위한 필수 개념", "시간 복잡도와 공간 복잡도 최적화에 집중"],
-        target: "자료구조를 이해하고 더 어려운 알고리즘 문제를 풀고 싶은 분",
-        contents: ["그리디 알고리즘", "분할 정복", "DP 기초", "고급 DP", "그래프 최단 경로", "이분 탐색", "세그먼트 트리", "최적화 기법"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"]]
+        intro:["C++ 기반 문제풀이에 주로 쓰이는 알고리즘 위주의 문제 해결 및 설명"],
+        target: "기본적인 자료구조를 알고 있고 코딩테스트에서 주로 나오는 알고리즘을 공부하고 싶으신 분",
+        contents: ["완전탐색", "이분탐색", "백트래킹", "분할정복", "동적계획법", "그리디"],
+        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "알고리즘 문제 해결 능력을 키워보세요!"],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "코딩테스트 대비를 체계적으로 도와드릴게요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "다양한 알고리즘을 익히며 논리적 사고력을 기를 수 있어요."]]
     } ,{
         tabIdx: 4,
         name: "코드포스반",
-        intro:["국제 프로그래밍 대회를 대비한 난이도 높은 알고리즘 학습", "시간/메모리 최적화 스킬과 구현 능력 향상"],
-        target: "코딩 테스트 이상의 대회 문제를 해결해보고 싶은 분",
-        contents: ["고급 그래프 알고리즘", "고급 DP", "네트워크 플로우", "퍼시스턴트 자료구조", "문자열 알고리즘", "수학적 알고리즘", "최적화 기법", "실전 모의 대회"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"]]
+        intro:["이전에 열린 코드포스 대회를 가상 참가하고 codeforces anytime으로 자신의 위치를 확인하는 것을 목표"],
+        target: "문제 풀이(PS)에 재미를 느끼고 계신 분",
+        contents: ["코드포스 대회진행(1)", "코드포스 대회진행(2)", "코드포스 대회진행(3)", "코드포스 대회진행(4)", "코드포스 대회진행(5)", "코드포스 대회진행(6)"],
+        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "실제 대회 경험을 통해 실전 감각을 길러보세요!"],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "코드포스 레이팅 향상을 목표로 함께 성장해요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "경쟁 프로그래밍의 재미를 느껴보실 수 있을 거예요."]]
     } ,{
         tabIdx: 5,
         name: "변태반",
-        intro:["실무나 대회에서는 잘 쓰이지 않는 특이한 알고리즘을 탐구", "취미와 호기심 기반의 손동열 중심 반"],
-        target: "특이한 알고리즘을 배우며 즐기고 싶은 분",
-        contents: ["유클리드 확장 알고리즘", "회문 트리", "희소 배열", "오일러 경로", "로프 알고리즘", "이상한 트리 구조", "특수 문자열 알고리즘", "잡다한 희귀 알고리즘"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"],
-                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr"]]
+        intro:["알고리즘반 이상의 심화 주제에 대한 설명과 문제풀이 위주로 진행"],
+        target: "어려운 문제 풀이에서 재미를 느끼는 분, 알고리즘반 수준의 지식을 갖추고 더 어려운 알고리즘을 공부해보고 싶은 분",
+        contents: ["모노톤 큐", "세그먼트 트리", "위상정렬 & DAG DP", "ETT", "LCA", "볼록껍질", "KMP"],
+        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "고난이도 알고리즘에 도전해보세요! 한계를 뛰어넘어 보아요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "어려운 문제일수록 더 큰 성취감을 느낄 수 있어요."],
+                ["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "최고 수준의 알고리즘을 마스터해봅시다!"]]
     }];
 
     const [activeTabIdx, setActiveTabIdx] = useState<number>(0);
@@ -122,7 +122,7 @@ export default function StudyIntro() {
                 <p className="text-lg font-semibold mt-10 mb-5">멘토진</p>
                 <div className="flex flex-wrap gap-8">
                     {item.mentor.map((mentor, k) => (
-                    <Mentor key={k} Name={mentor[0]} Department={mentor[1]} Email={mentor[2]}/>
+                    <Mentor key={k} Name={mentor[0]} Department={mentor[1]} Email={mentor[2]} Message={mentor[3]}/>
                     ))}
                 </div>
             </div>
@@ -152,15 +152,21 @@ function Line({ Week, Content }: ContentsProps) {
     );
 }
 
-function Mentor({ ImgUrl, Name, Department, Email }: MentorProps) {
+function Mentor({ Name, Department, Email, Message }: MentorProps) {
     return (
-        <div className={"flex flex-row pb-4"}>
-            {ImgUrl ? <img src={ImgUrl} alt="사진" className="w-24 h-32 object-cover" /> : <div className="w-24 h-32 bg-[#D9D9D9]"/>}
-            <div className="flex flex-col justify-center ml-4">
-                <Icon_TextBox text={Name} iconSrc={UserIcon} divClassName="m-0.5" textClassName="font-semibold text-md" iconClassName="w-4 h-4"/>
-                <Icon_TextBox text={Department} iconSrc={HomeIcon} divClassName="m-0.5" textClassName="text-[#919191] text-md" iconClassName="w-4 h-4"/>
-                <Icon_TextBox text={Email} iconSrc={MailIcon} divClassName="m-0.5" textClassName="text-[#919191] text-md" iconClassName="w-4 h-4"/>
+        <div className={"flex flex-col pb-4"}>
+            <div className="flex flex-row">
+                <div className="flex flex-col justify-center ml-4">
+                    <Icon_TextBox text={Name} iconSrc={UserIcon} divClassName="m-0.5" textClassName="font-semibold text-md" iconClassName="w-4 h-4"/>
+                    <Icon_TextBox text={Department} iconSrc={HomeIcon} divClassName="m-0.5" textClassName="text-[#919191] text-md" iconClassName="w-4 h-4"/>
+                    <Icon_TextBox text={Email} iconSrc={MailIcon} divClassName="m-0.5" textClassName="text-[#919191] text-md" iconClassName="w-4 h-4"/>
+                </div>
             </div>
+            {Message && (
+                <div className="mt-3 p-3 bg-[#F8F4FF] border border-[#E0D7F1] rounded-lg max-w-xs">
+                    <p className="text-sm text-[#666666] italic">"{Message}"</p>
+                </div>
+            )}
         </div>
     );
 }

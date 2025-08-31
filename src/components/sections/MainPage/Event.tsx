@@ -67,10 +67,10 @@ export default function Event() {
     ];
     
     return (
-        <div id='event' className='w-full flex flex-col items-center justify-center gap-5 h-full pb-20'>
+        <div id='event' className='w-full px-4 flex flex-col items-center justify-center gap-5 h-full pb-20'>
             <p className="text-3xl font-bold text-center mb-6 mt-10">이달의 주요 이벤트</p>
 
-            <div className="block md:hidden w-full px-4"> {/* 모바일 화면 */}
+            <div className="block md:hidden w-full"> {/* 모바일 화면 */}
                 <div className="w-full flex flex-col gap-8">
 
                     <Swiper modules={[Navigation, Pagination, Autoplay]} 
@@ -89,8 +89,8 @@ export default function Event() {
                 </div>
             </div>
 
-            <div className="hidden md:block w-full px-4"> {/* 컴퓨터 화면 */}
-                <div className="grid grid-cols-3 gap-4 max-w-5xl mx-auto">
+            <div className="hidden md:block w-full max-w-5xl"> {/* 컴퓨터 화면 */}
+                <div className="grid grid-cols-3 gap-4">
                     {events.map((event, index) =>
                     <EventBox key={index} title={event.title} start={event.start} end={event.end} imgUrl={event.imgUrl} className='h-full w-full'/>
                     )}
