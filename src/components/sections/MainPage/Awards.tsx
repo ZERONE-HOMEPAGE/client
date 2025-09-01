@@ -82,8 +82,8 @@ export default function Awards() {
                 ))}
                 </div>
             </div>
-            <p className="max-w-5xl leading-relaxed text-sm md:text-lg font-bold text-center mb-4 md:mb-12 mt-4 md:mt-6 px-4">
-            위와 같은 수상 경험을 통해 알고리즘 문제 해결 능력을 입증하였으며 다양한 문제 유형을 분석하고 해결하는 과정에서 논리적 사고력과 실전 감각을 지속적으로 향상시켜 왔습니다.
+            <p className="max-w-5xl leading-relaxed text-sm md:text-lg text-center font-bold mb-4 md:mb-12 mt-4 md:mt-6 px-4">
+            위와 같은 수상 경험을 통해 알고리즘 문제 해결 능력을 입증하였으며<br/> 다양한 문제 유형을 분석하고 해결하는 과정에서 논리적 사고력과 실전 감각을 지속적으로 향상시켜 왔습니다.
             </p>
             
         </div>
