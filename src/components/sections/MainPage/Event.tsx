@@ -2,6 +2,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import zeroneCharacter from '@/assets/images/zerone_character.jpg';
 import clockIcon from '@/assets/icon/clock.png';
+import oneAndN from '@/assets/eventImg/1&N.png';
+import baekjoonbingo from '@/assets/eventImg/baekjoonbingo.png';
+import mogakco from '@/assets/eventImg/mogakco.png';
+import study from '@/assets/eventImg/study.png';
 
 interface EventBoxProps {
     title: string;
@@ -29,40 +33,40 @@ function EventBox({ title, start, end, imgUrl, className}: EventBoxProps) {
 export default function Event() {
     const events = [
         {
-        title: "알고리즘 대회",
-        start: "2023.10.15",
-        end: "2023.10.20",
-        
+        title: "가두모집",
+        start: "2025.09.01",
+        end: "2025.09.14",
+        imgUrl: "",
         },
         {
-        title: "해커톤 대회",
-        start: "2023.10.22",
-        end: "2023.10.24",
-        imgUrl: ""
+        title: "개강총회",
+        start: "2025.09.22",
+        end: "2025.09.22",
+        imgUrl: "",
         },
         {
-        title: "개발자 세미나",
-        start: "2023.10.29",
-        end: "2023.10.29",
-        imgUrl: ""
+        title: "1&N 네트워킹데이",
+        start: "2025.09.27",
+        end: "2025.09.27",
+        imgUrl: oneAndN
         },
         {
-        title: "네트워킹 파티",
-        start: "2023.11.05",
-        end: "2023.11.05",
-        imgUrl: ""
+        title: "스터디",
+        start: "2025.09.29",
+        end: "2025.12.07",
+        imgUrl: study
         },
         {
-        title: "여름방학 백준 빙고",
-        start: "2023.11.05",
-        end: "2023.11.05",
-        imgUrl: ""
+        title: "모.각.코",
+        start: "2025.09.29",
+        end: "2025.12.07",
+        imgUrl: mogakco
         },
         {
-        title: "백준 마라톤",
-        start: "2023.11.05",
-        end: "2023.11.05",
-        imgUrl: ""
+        title: "백준마라톤",
+        start: "2025.09.29",
+        end: "2025.12.07",
+        imgUrl: baekjoonbingo
         }
     ];
     
