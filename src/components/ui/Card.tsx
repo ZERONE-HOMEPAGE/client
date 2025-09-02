@@ -1,6 +1,6 @@
-export default function Card({ children, className }: { children: React.ReactNode; className?: string }) {
+export default function Card({ children, className, animation }: { children: React.ReactNode; className?: string; animation?: string }) {
     return (
-        <div className={`bg-white p-4 rounded shadow-md ${className}`}>
+        <div data-aos={animation} className={`bg-white p-4 rounded shadow-md ${className}`}>
             {children}
         </div>
     );

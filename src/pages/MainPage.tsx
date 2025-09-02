@@ -1,19 +1,37 @@
-import Header from "@/components/layout/Header";
-import ClubIntro from "@/components/sections/MainPage/ClubIntro";
-import Event from "@/components/sections/MainPage/Event";
-import Hero from "@/components/sections/MainPage/Hero";
+import { useState, useEffect } from 'react';
+import Awards from '@/components/sections/MainPage/Awards';
+import ClubIntro from '@/components/sections/MainPage/ClubIntro';
+import CompetitionHistory from '@/components/sections/MainPage/CompetitionHistory';
+import Event from '@/components/sections/MainPage/Event';
+import Hero from '@/components/sections/MainPage/Hero';
+import Contact from '@/components/sections/MainPage/Contact';
+import MobileHero from '@/components/sections/MainPage/MobileHero';
 
 export default function MainPage() {
-    return (
-        <div className="min-w-full h-full bg-blue-100 flex flex-col">
-            <div className="flex flex-col h-screen">
-                <Header />
-                <Hero />
-            </div>
-            <div className="min-w-full flex flex-col items-center justify-center p-4 gap-10">
-                <Event />
-                <ClubIntro />
-            </div>
-        </div>
-    );
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => {
+      setIsMobile(window.innerWidth < 768); // md 기준
+    };
+
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
+
+  return (
+    <div className="min-w-full h-full flex flex-col">
+      <div className="flex flex-col h-screen -mt-16">
+        {isMobile ? <MobileHero /> : <Hero />}
+      </div>
+      <div className="min-w-full flex flex-col items-center justify-center">
+        <Event />
+        <ClubIntro />
+        <Awards />
+        <CompetitionHistory />
+        <Contact />
+      </div>
+    </div>
+  );
 }
