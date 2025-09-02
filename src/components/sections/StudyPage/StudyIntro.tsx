@@ -70,7 +70,7 @@ export default function StudyIntro() {
         intro:["이전에 열린 코드포스 대회를 가상 참가하고 codeforces anytime으로 자신의 위치를 확인하는 것을 목표"],
         target: "문제 풀이(PS)에 재미를 느끼고 계신 분",
         contents: ["코드포스 대회진행(1)", "코드포스 대회진행(2)", "코드포스 대회진행(3)", "코드포스 대회진행(4)", "코드포스 대회진행(5)", "코드포스 대회진행(6)"],
-        mentor: [["여지훈", "컴퓨터학부 · 23학번", "zasc90@hanyang.ac.kr", "코드포스로 세계 무대에 도전해보세요!"],]
+        mentor: [["이준호", "수리데이터사이언스과 · 21학번", "rhdqor213@gmail.com", "혼자보다 같이 할 때 더 재미있습니다!"],]
     }
     ];
 
@@ -85,8 +85,8 @@ export default function StudyIntro() {
                 { label: "브릿지반", active: activeTabIdx === 1 },
                 { label: "자료구조반", active: activeTabIdx === 2 },
                 { label: "알고리즘반", active: activeTabIdx === 3 },
-                { label: "코드포스반", active: activeTabIdx === 4 },
-                { label: "변태반", active: activeTabIdx === 5 }
+                { label: "변태반", active: activeTabIdx === 4 },
+                { label: "코드포스반", active: activeTabIdx === 5 }
             ]}
             clickHandler={(index) => setActiveTabIdx(index)}
             activeTabIdx={activeTabIdx}
